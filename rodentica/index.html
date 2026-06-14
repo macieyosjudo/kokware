@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rodentica – Weterynarz dla gryzoni i małych ssaków</title>
+  <meta name="description" content="Rodentica – specjalistyczna przychodnia weterynaryjna dla gryzoni, królików, jeży i małych ssaków. Profesjonalna opieka, doświadczony zespół, nowoczesny sprzęt." />
+  <meta name="keywords" content="weterynarz gryzonie, przychodnia dla królików, lekarz weterynarii szczury, świnka morska weterynarz, jeż weterynarz, Rodentica" />
+  <meta property="og:title" content="Rodentica – Weterynarz dla gryzoni i małych ssaków" />
+  <meta property="og:description" content="Specjalistyczna przychodnia weterynaryjna dla gryzoni, królików i małych ssaków." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rodentica.pl" />
+  <link rel="canonical" href="https://rodentica.pl" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VeterinaryCare",
+    "name": "Rodentica",
+    "description": "Specjalistyczna przychodnia weterynaryjna dla gryzoni i małych ssaków",
+    "url": "https://rodentica.pl",
+    "telephone": "+48-000-000-000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "PL"
+    },
+    "openingHours": ["Mo-Fr 09:00-19:00", "Sa 09:00-14:00"]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#0D9488',
+            secondary: '#14B8A6',
+            cta:       '#F97316',
+            'cta-hover':'#EA6C0A',
+            dark:      '#0A0F0E',
+            'dark-2':  '#111918',
+            'dark-3':  '#162120',
+            'dark-4':  '#1E2E2C',
+            'text-main':'#E2F0EF',
+            'text-muted':'#8FADA9',
+          },
+          fontFamily: {
+            heading: ['Figtree', 'sans-serif'],
+            body:    ['Noto Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { background-color: #0A0F0E; color: #E2F0EF; font-family: 'Noto Sans', sans-serif; }
+    h1,h2,h3,h4,h5 { font-family: 'Figtree', sans-serif; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* Navbar */
+    .nav-link { position: relative; color: #8FADA9; transition: color 200ms; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#0D9488; transition: width 200ms; }
+    .nav-link:hover { color: #E2F0EF; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Glow effect */
+    .teal-glow { box-shadow: 0 0 40px rgba(13,148,136,0.15); }
+    .teal-glow-sm { box-shadow: 0 0 20px rgba(13,148,136,0.12); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #14B8A6 0%, #ffffff 60%, #F97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero radial */
+    .hero-bg {
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(13,148,136,0.18) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 85% 70%, rgba(249,115,22,0.06) 0%, transparent 60%),
+                  #0A0F0E;
+    }
+
+    /* Card */
+    .card {
+      background: linear-gradient(135deg, #162120 0%, #111918 100%);
+      border: 1px solid rgba(13,148,136,0.15);
+      transition: border-color 250ms, transform 250ms, box-shadow 250ms;
+    }
+    .card:hover {
+      border-color: rgba(13,148,136,0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(13,148,136,0.12);
+    }
+
+    /* FAQ */
+    .faq-item details summary { list-style: none; cursor: pointer; }
+    .faq-item details summary::-webkit-details-marker { display: none; }
+    .faq-item details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 200ms; }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms, transform 600ms; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Mobile menu */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* Focus */
+    :focus-visible { outline: 3px solid #0D9488; outline-offset: 3px; border-radius: 4px; }
+
+    /* Section divider */
+    .divider { border-color: rgba(13,148,136,0.12); }
+
+    /* Stat numbers */
+    .stat-number { font-family: 'Figtree', sans-serif; font-weight: 800; background: linear-gradient(135deg, #14B8A6, #0D9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Animal tags */
+    .animal-tag { background: rgba(13,148,136,0.1); border: 1px solid rgba(13,148,136,0.2); color: #14B8A6; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: 'Figtree', sans-serif; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Przejdź do treści</a>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50" role="banner">
+  <div class="mx-4 mt-4">
+    <nav class="max-w-6xl mx-auto rounded-2xl px-6 py-3 flex items-center justify-between"
+         style="background:rgba(10,15,14,0.85); backdrop-filter:blur(16px); border:1px solid rgba(13,148,136,0.18);"
+         aria-label="Nawigacja główna">
+
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg" aria-label="Rodentica - strona główna">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0D9488,#14B8A6);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <span class="text-xl font-heading font-700 text-text-main" style="font-weight:700; letter-spacing:-0.02em;">Rodentica</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-7 list-none m-0 p-0" role="list">
+        <li><a href="#uslugi" class="nav-link text-sm font-medium">Usługi</a></li>
+        <li><a href="#o-nas" class="nav-link text-sm font-medium">O nas</a></li>
+        <li><a href="#zespol" class="nav-link text-sm font-medium">Zespół</a></li>
+        <li><a href="#faq" class="nav-link text-sm font-medium">FAQ</a></li>
+        <li><a href="#kontakt" class="nav-link text-sm font-medium">Kontakt</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="tel:+48000000000" class="text-sm text-text-muted hover:text-text-main transition-colors duration-200 cursor-pointer flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Zadzwoń
+        </a>
+        <a href="#kontakt" class="bg-cta hover:bg-cta-hover text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors duration-200 cursor-pointer" style="font-family:'Figtree',sans-serif;">
+          Umów wizytę
+        </a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden p-2 rounded-lg text-text-muted hover:text-text-main transition-colors duration-200 cursor-pointer" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="ham-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" role="navigation" aria-label="Menu mobilne"
+         style="background:rgba(10,15,14,0.97); backdrop-filter:blur(16px); border:1px solid rgba(13,148,136,0.18); border-top:none;"
+         class="max-w-6xl mx-auto rounded-b-2xl overflow-hidden">
+      <ul class="list-none m-0 p-0 flex flex-col py-4" role="list">
+        <li><a href="#uslugi" class="mobile-nav-link block px-6 py-3 text-text-muted hover:text-text-main hover:bg-dark-3 transition-colors duration-200">Usługi</a></li>
+        <li><a href="#o-nas" class="mobile-nav-link block px-6 py-3 text-text-muted hover:text-text-main hover:bg-dark-3 transition-colors duration-200">O nas</a></li>
+        <li><a href="#zespol" class="mobile-nav-link block px-6 py-3 text-text-muted hover:text-text-main hover:bg-dark-3 transition-colors duration-200">Zespół</a></li>
+        <li><a href="#faq" class="mobile-nav-link block px-6 py-3 text-text-muted hover:text-text-main hover:bg-dark-3 transition-colors duration-200">FAQ</a></li>
+        <li><a href="#kontakt" class="mobile-nav-link block px-6 py-3 text-text-muted hover:text-text-main hover:bg-dark-3 transition-colors duration-200">Kontakt</a></li>
+        <li class="px-6 pt-3 pb-2">
+          <a href="#kontakt" class="mobile-nav-link block w-full text-center bg-cta hover:bg-cta-hover text-white font-semibold py-3 rounded-xl transition-colors duration-200 cursor-pointer" style="font-family:'Figtree',sans-serif;">Umów wizytę</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero" class="hero-bg min-h-screen flex items-center pt-28 pb-20 px-4" aria-label="Sekcja główna">
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Text -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.12); border:1px solid rgba(13,148,136,0.25); color:#14B8A6; font-family:'Figtree',sans-serif;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
+          Specjalistyczna przychodnia weterynaryjna
+        </div>
+
+        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-tight mb-6" style="letter-spacing:-0.03em;">
+          Twój pupil<br/>
+          <span class="gradient-text">zasługuje na</span><br/>
+          specjalistów
+        </h1>
+
+        <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-lg" style="line-height:1.75;">
+          Rodentica to pierwsza w Polsce przychodnia skupiona wyłącznie na zdrowiu gryzoni, królików i małych ssaków. Doświadczony zespół, nowoczesny sprzęt, troska na każdym kroku.
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-10">
+          <span class="animal-tag">Szczury</span>
+          <span class="animal-tag">Myszy</span>
+          <span class="animal-tag">Chomiki</span>
+          <span class="animal-tag">Świnki morskie</span>
+          <span class="animal-tag">Króliki</span>
+          <span class="animal-tag">Chinchille</span>
+          <span class="animal-tag">Jeże</span>
+          <span class="animal-tag">Koszatniczki</span>
+        </div>
+
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="#kontakt" class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 cursor-pointer teal-glow-sm" style="font-family:'Figtree',sans-serif; font-size:1rem;">
+            Umów wizytę
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#uslugi" class="inline-flex items-center gap-2 text-text-muted hover:text-text-main transition-colors duration-200 cursor-pointer font-medium" style="font-family:'Figtree',sans-serif;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg>
+            Nasze usługi
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats + Visual -->
+      <div class="reveal" style="transition-delay:150ms;">
+        <div class="relative">
+          <!-- Main visual card -->
+          <div class="rounded-3xl p-8 teal-glow" style="background:linear-gradient(135deg,#162120,#111918); border:1px solid rgba(13,148,136,0.2);">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,#0D9488,#14B8A6);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-heading font-bold text-text-main">Rodentica</div>
+                <div class="text-sm text-text-muted">Przychodnia weterynaryjna</div>
+              </div>
+            </div>
+
+            <!-- Stats grid -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="rounded-2xl p-4" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="stat-number text-3xl mb-1">10+</div>
+                <div class="text-sm text-text-muted">lat doświadczenia</div>
+              </div>
+              <div class="rounded-2xl p-4" style="background:rgba(249,115,22,0.07); border:1px solid rgba(249,115,22,0.12);">
+                <div class="text-3xl font-extrabold mb-1" style="font-family:'Figtree',sans-serif; background:linear-gradient(135deg,#F97316,#FBBF24); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">5000+</div>
+                <div class="text-sm text-text-muted">pacjentów rocznie</div>
+              </div>
+              <div class="rounded-2xl p-4" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="stat-number text-3xl mb-1">98%</div>
+                <div class="text-sm text-text-muted">zadowolonych klientów</div>
+              </div>
+              <div class="rounded-2xl p-4" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="stat-number text-3xl mb-1">6</div>
+                <div class="text-sm text-text-muted">specjalistów w zespole</div>
+              </div>
+            </div>
+
+            <!-- Opening hours badge -->
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(13,148,136,0.08); border:1px solid rgba(13,148,136,0.15);">
+              <div class="w-2 h-2 rounded-full bg-primary flex-shrink-0" style="box-shadow:0 0 6px #0D9488;"></div>
+              <div class="text-sm text-text-muted">
+                <span class="text-text-main font-medium">Pon–Pt</span> 9:00–19:00 &nbsp;·&nbsp; <span class="text-text-main font-medium">Sob</span> 9:00–14:00
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badge -->
+          <div class="absolute -top-4 -right-4 rounded-2xl px-4 py-3 shadow-xl" style="background:#F97316; font-family:'Figtree',sans-serif;">
+            <div class="text-white font-bold text-sm">Pierwsza wizyta</div>
+            <div class="text-orange-100 text-xs">bezpłatna konsultacja</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════ -->
+<section id="uslugi" class="py-24 px-4" aria-labelledby="uslugi-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.1); border:1px solid rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">
+        Co oferujemy
+      </div>
+      <h2 id="uslugi-heading" class="text-4xl lg:text-5xl font-heading font-extrabold text-text-main mb-4" style="letter-spacing:-0.02em;">Nasze usługi</h2>
+      <p class="text-text-muted text-lg max-w-2xl mx-auto" style="line-height:1.75;">Kompleksowa opieka weterynaryjna dostosowana do wyjątkowych potrzeb małych ssaków i gryzoni.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Service 1 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(13,148,136,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Badanie ogólne</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Kompleksowe badanie kliniczne z oceną stanu zdrowia, wagi, uzębienia i kondycji ogólnej. Zalecane co 6 miesięcy.</p>
+      </article>
+
+      <!-- Service 2 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(13,148,136,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Diagnostyka obrazowa</h3>
+        <p class="text-text-muted text-sm leading-relaxed">RTG i USG dostosowane do małych pacjentów. Precyzyjna diagnostyka bez stresu dla zwierzęcia.</p>
+      </article>
+
+      <!-- Service 3 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Chirurgia</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Zabiegi chirurgiczne w pełni znieczuleniu, anestezja dopasowana do gatunku, monitoring podczas operacji i opieka pooperacyjna.</p>
+      </article>
+
+      <!-- Service 4 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(13,148,136,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Badania laboratoryjne</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Morfologia, biochemia, cytologia – wyniki w ciągu godziny. Własne laboratorium na miejscu.</p>
+      </article>
+
+      <!-- Service 5 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(13,148,136,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Stomatologia</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Korekta i szlifowanie zębów, leczenie problemów okluzji. Gryzonie wymagają regularnej kontroli uzębienia.</p>
+      </article>
+
+      <!-- Service 6 -->
+      <article class="card rounded-2xl p-6 cursor-pointer" tabindex="0">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-text-main mb-2">Opieka paliatywna</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Wsparcie i łagodzenie bólu dla starszych i ciężko chorych zwierząt. Empatyczna opieka w trudnych chwilach.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section id="o-nas" class="py-24 px-4" style="background:linear-gradient(180deg,#0A0F0E 0%,#0F1715 50%,#0A0F0E 100%);" aria-labelledby="o-nas-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Visual side -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative">
+          <div class="rounded-3xl p-8" style="background:linear-gradient(135deg,#162120,#111918); border:1px solid rgba(13,148,136,0.15);">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 p-4 rounded-2xl" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.15);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-text-main text-sm">Specjalizacja gatunkowa</div>
+                  <div class="text-text-muted text-xs mt-0.5">Wyłącznie małe ssaki i gryzonie</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 rounded-2xl" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.15);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-text-main text-sm">Nowoczesny sprzęt</div>
+                  <div class="text-text-muted text-xs mt-0.5">RTG, USG, endoskopia, własne lab</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 rounded-2xl" style="background:rgba(249,115,22,0.07); border:1px solid rgba(249,115,22,0.12);">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(249,115,22,0.12);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-text-main text-sm">Doświadczony zespół</div>
+                  <div class="text-text-muted text-xs mt-0.5">6 lekarzy weterynarii, stałe szkolenia</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 rounded-2xl" style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.12);">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.15);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-text-main text-sm">Wizyty umawiane online</div>
+                  <div class="text-text-muted text-xs mt-0.5">Bez kolejek, w wybranym terminie</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative dot -->
+          <div class="absolute -bottom-6 -left-6 w-24 h-24 rounded-full" style="background:radial-gradient(circle,rgba(13,148,136,0.15),transparent); pointer-events:none;" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div class="reveal order-1 lg:order-2" style="transition-delay:150ms;">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.1); border:1px solid rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">
+          O nas
+        </div>
+        <h2 id="o-nas-heading" class="text-4xl lg:text-5xl font-heading font-extrabold text-text-main mb-6" style="letter-spacing:-0.02em;">
+          Pasja do małych<br/>zwierząt od lat
+        </h2>
+        <p class="text-text-muted leading-relaxed mb-5" style="font-size:1.0625rem; line-height:1.75;">
+          Rodentica powstała z jednego przekonania: gryzonie, króliki i małe ssaki zasługują na taką samą jakość opieki weterynaryjnej jak psy i koty. Przez lata zbudowaliśmy zespół lekarzy, którzy nie tylko leczą – rozumieją biologię i zachowanie każdego gatunku.
+        </p>
+        <p class="text-text-muted leading-relaxed mb-8" style="font-size:1.0625rem; line-height:1.75;">
+          Nasza przychodnia wyposażona jest w sprzęt specjalnie skalibrowany pod kątem małych pacjentów. Znieczulenie, monitoring, zabiegi – wszystko dostosowane do rozmiaru i metabolizmu zwierzęcia.
+        </p>
+        <a href="#kontakt" class="inline-flex items-center gap-2 font-semibold text-primary hover:text-secondary transition-colors duration-200 cursor-pointer" style="font-family:'Figtree',sans-serif;">
+          Skontaktuj się z nami
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TEAM
+════════════════════════════════════════════ -->
+<section id="zespol" class="py-24 px-4" aria-labelledby="zespol-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.1); border:1px solid rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">
+        Nasz zespół
+      </div>
+      <h2 id="zespol-heading" class="text-4xl lg:text-5xl font-heading font-extrabold text-text-main mb-4" style="letter-spacing:-0.02em;">Zaufaj specjalistom</h2>
+      <p class="text-text-muted text-lg max-w-xl mx-auto" style="line-height:1.75;">Lekarze z pasją i doświadczeniem w opiece nad małymi ssakami i gryzoniami.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Team member 1 -->
+      <article class="card rounded-2xl p-6 text-center cursor-pointer" tabindex="0">
+        <div class="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-3xl font-extrabold" style="background:linear-gradient(135deg,#0D9488,#14B8A6); font-family:'Figtree',sans-serif; color:white;">AK</div>
+        <h3 class="font-heading font-bold text-text-main text-lg mb-1">dr Anna Kowalska</h3>
+        <div class="text-primary text-sm font-medium mb-3" style="font-family:'Figtree',sans-serif;">Założycielka · Chirurgia egzotyczna</div>
+        <p class="text-text-muted text-sm leading-relaxed">Absolwentka SGGW, specjalizacja z chirurgii małych ssaków. 12 lat doświadczenia w pracy z gryzoniami.</p>
+      </article>
+
+      <!-- Team member 2 -->
+      <article class="card rounded-2xl p-6 text-center cursor-pointer" tabindex="0">
+        <div class="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-3xl font-extrabold" style="background:linear-gradient(135deg,#F97316,#FBBF24); font-family:'Figtree',sans-serif; color:white;">MN</div>
+        <h3 class="font-heading font-bold text-text-main text-lg mb-1">lek. wet. Marek Nowak</h3>
+        <div class="text-primary text-sm font-medium mb-3" style="font-family:'Figtree',sans-serif;">Diagnostyka obrazowa</div>
+        <p class="text-text-muted text-sm leading-relaxed">Ekspert w diagnostyce RTG i USG małych ssaków. Prowadzi szkolenia dla weterynarzy w całej Polsce.</p>
+      </article>
+
+      <!-- Team member 3 -->
+      <article class="card rounded-2xl p-6 text-center cursor-pointer" tabindex="0">
+        <div class="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-3xl font-extrabold" style="background:linear-gradient(135deg,#0D9488,#0F766E); font-family:'Figtree',sans-serif; color:white;">KW</div>
+        <h3 class="font-heading font-bold text-text-main text-lg mb-1">lek. wet. Kasia Wiśniewska</h3>
+        <div class="text-primary text-sm font-medium mb-3" style="font-family:'Figtree',sans-serif;">Stomatologia · Dietetyka</div>
+        <p class="text-text-muted text-sm leading-relaxed">Specjalistka od chorób uzębienia i żywienia gryzoni. Prowadzi konsultacje dietetyczne online.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section class="py-24 px-4" style="background:linear-gradient(180deg,#0A0F0E 0%,#0F1715 50%,#0A0F0E 100%);" aria-label="Opinie klientów">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-4xl font-heading font-extrabold text-text-main mb-4" style="letter-spacing:-0.02em;">Co mówią właściciele</h2>
+      <p class="text-text-muted" style="line-height:1.75;">Opinie prawdziwych klientów Rodentica</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <figure class="card rounded-2xl p-6 cursor-default">
+        <div class="flex gap-1 mb-4" aria-label="Ocena 5 na 5 gwiazdek">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote class="text-text-muted text-sm leading-relaxed mb-4">"Moja świnka morska miała problem z zębami – żadna przychodnia w mieście nie chciała się tym zająć. W Rodentica poczułam się w końcu profesjonalnie zaopiekowana. Gorąco polecam!"</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">MK</div>
+          <div>
+            <div class="text-text-main text-sm font-semibold">Marta K.</div>
+            <div class="text-text-muted text-xs">Właścicielka świnki morskiej</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="card rounded-2xl p-6 cursor-default">
+        <div class="flex gap-1 mb-4" aria-label="Ocena 5 na 5 gwiazdek">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote class="text-text-muted text-sm leading-relaxed mb-4">"Mój szczur przeszedł operację usunięcia guza. Opieka przed i po zabiegu była wzorowa. Dr Kowalska tłumaczyła każdy krok, co bardzo mnie uspokoiło. Szczurek już biega!"</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(249,115,22,0.15); color:#F97316; font-family:'Figtree',sans-serif;">PL</div>
+          <div>
+            <div class="text-text-main text-sm font-semibold">Piotr L.</div>
+            <div class="text-text-muted text-xs">Właściciel szczurów</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="card rounded-2xl p-6 cursor-default">
+        <div class="flex gap-1 mb-4" aria-label="Ocena 5 na 5 gwiazdek">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote class="text-text-muted text-sm leading-relaxed mb-4">"Chinchilla trafiła do Rodentica w stanie krytycznym. Dzięki szybkiej reakcji i profesjonalizmowi zespołu udało się ją uratować. Jestem dozgonnie wdzięczna całemu personelowi."</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">AJ</div>
+          <div>
+            <div class="text-text-main text-sm font-semibold">Agnieszka J.</div>
+            <div class="text-text-muted text-xs">Właścicielka chinchilli</div>
+          </div>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section id="faq" class="py-24 px-4" aria-labelledby="faq-heading">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.1); border:1px solid rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">
+        FAQ
+      </div>
+      <h2 id="faq-heading" class="text-4xl font-heading font-extrabold text-text-main mb-4" style="letter-spacing:-0.02em;">Najczęstsze pytania</h2>
+    </div>
+
+    <div class="space-y-3 reveal" style="transition-delay:100ms;">
+
+      <div class="faq-item card rounded-2xl overflow-hidden">
+        <details>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-dark-3 transition-colors duration-200">
+            <span class="font-heading font-semibold text-text-main pr-4">Czy przyjmujecie zwierzęta bez umówionej wizyty?</span>
+            <svg class="faq-chevron w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-text-muted text-sm leading-relaxed">W przypadkach nagłych przyjmujemy bez rezerwacji – prosimy zadzwonić z wyprzedzeniem, abyśmy mogli przygotować się na wizytę. Regularne wizyty zdrowotne wymagają umówienia terminu online lub telefonicznie.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item card rounded-2xl overflow-hidden">
+        <details>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-dark-3 transition-colors duration-200">
+            <span class="font-heading font-semibold text-text-main pr-4">Jakie gatunki przyjmujecie?</span>
+            <svg class="faq-chevron w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-text-muted text-sm leading-relaxed">Przyjmujemy szczury, myszy, chomiki, świnki morskie, króliki, chinchille, koszatniczki, jeże afrykańskie, myszoskoczki i inne małe ssaki. W razie wątpliwości prosimy o kontakt – możemy dokonać wstępnej oceny telefonicznie.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item card rounded-2xl overflow-hidden">
+        <details>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-dark-3 transition-colors duration-200">
+            <span class="font-heading font-semibold text-text-main pr-4">Jak przygotować zwierzę do wizyty?</span>
+            <svg class="faq-chevron w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-text-muted text-sm leading-relaxed">Zalecamy transport w znajomej klatce lub specjalnym transporterze. Umieść ręcznik lub trociny z klatki – znajomy zapach zmniejsza stres. Nie karm 2–3 godziny przed wizytą, jeśli planowany jest zabieg chirurgiczny lub anestezja.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item card rounded-2xl overflow-hidden">
+        <details>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-dark-3 transition-colors duration-200">
+            <span class="font-heading font-semibold text-text-main pr-4">Ile kosztuje wizyta?</span>
+            <svg class="faq-chevron w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-text-muted text-sm leading-relaxed">Pierwsza wizyta to bezpłatna konsultacja (15 min). Standardowe badanie ogólne zaczyna się od 120 zł. Szczegółowy cennik dostępny jest na miejscu lub po zapytaniu mailowym. Ceny zależą od gatunku i zakresu badania.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item card rounded-2xl overflow-hidden">
+        <details>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-dark-3 transition-colors duration-200">
+            <span class="font-heading font-semibold text-text-main pr-4">Czy oferujecie konsultacje online?</span>
+            <svg class="faq-chevron w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-text-muted text-sm leading-relaxed">Tak! Konsultacje dietetyczne i behawioralne prowadzone są w formie wideorozmowy. Idealne dla właścicieli z całej Polski. Konsultacja online trwa 30 minut i kosztuje 80 zł. Rezerwacja przez formularz kontaktowy.</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section id="kontakt" class="py-24 px-4" style="background:linear-gradient(180deg,#0A0F0E 0%,#0F1715 100%);" aria-labelledby="kontakt-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full text-sm font-medium" style="background:rgba(13,148,136,0.1); border:1px solid rgba(13,148,136,0.2); color:#14B8A6; font-family:'Figtree',sans-serif;">
+        Kontakt
+      </div>
+      <h2 id="kontakt-heading" class="text-4xl lg:text-5xl font-heading font-extrabold text-text-main mb-4" style="letter-spacing:-0.02em;">Umów wizytę</h2>
+      <p class="text-text-muted text-lg max-w-xl mx-auto" style="line-height:1.75;">Napisz do nas lub zadzwoń. Odpowiadamy w ciągu kilku godzin.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+
+      <!-- Contact info -->
+      <div class="reveal space-y-5">
+        <div class="card rounded-2xl p-6 flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.12);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="font-heading font-semibold text-text-main mb-1">Telefon</div>
+            <a href="tel:+48000000000" class="text-text-muted hover:text-primary transition-colors duration-200 cursor-pointer">+48 000 000 000</a>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.12);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="font-heading font-semibold text-text-main mb-1">E-mail</div>
+            <a href="mailto:kontakt@rodentica.pl" class="text-text-muted hover:text-primary transition-colors duration-200 cursor-pointer">kontakt@rodentica.pl</a>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.12);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="font-heading font-semibold text-text-main mb-1">Adres</div>
+            <p class="text-text-muted">ul. Przykładowa 1<br/>00-000 Warszawa</p>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(13,148,136,0.12);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="font-heading font-semibold text-text-main mb-1">Godziny otwarcia</div>
+            <p class="text-text-muted text-sm">Poniedziałek–Piątek: 9:00–19:00<br/>Sobota: 9:00–14:00<br/>Niedziela: zamknięte</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="reveal" style="transition-delay:150ms;">
+        <form class="card rounded-2xl p-8 space-y-5" novalidate aria-label="Formularz kontaktowy" onsubmit="handleSubmit(event)">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-text-main mb-1.5" style="font-family:'Figtree',sans-serif;">Imię i nazwisko *</label>
+              <input type="text" id="name" name="name" required autocomplete="name"
+                class="w-full px-4 py-3 rounded-xl text-text-main placeholder-text-muted text-sm transition-colors duration-200"
+                style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.18); outline:none;"
+                placeholder="Jan Kowalski"
+                onfocus="this.style.borderColor='rgba(13,148,136,0.5)'"
+                onblur="this.style.borderColor='rgba(13,148,136,0.18)'" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-text-main mb-1.5" style="font-family:'Figtree',sans-serif;">Telefon</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel"
+                class="w-full px-4 py-3 rounded-xl text-text-main placeholder-text-muted text-sm transition-colors duration-200"
+                style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.18); outline:none;"
+                placeholder="+48 000 000 000"
+                onfocus="this.style.borderColor='rgba(13,148,136,0.5)'"
+                onblur="this.style.borderColor='rgba(13,148,136,0.18)'" />
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-text-main mb-1.5" style="font-family:'Figtree',sans-serif;">E-mail *</label>
+            <input type="email" id="email" name="email" required autocomplete="email"
+              class="w-full px-4 py-3 rounded-xl text-text-main placeholder-text-muted text-sm transition-colors duration-200"
+              style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.18); outline:none;"
+              placeholder="jan@przykład.pl"
+              onfocus="this.style.borderColor='rgba(13,148,136,0.5)'"
+              onblur="this.style.borderColor='rgba(13,148,136,0.18)'" />
+          </div>
+
+          <div>
+            <label for="animal" class="block text-sm font-medium text-text-main mb-1.5" style="font-family:'Figtree',sans-serif;">Gatunek zwierzęcia</label>
+            <select id="animal" name="animal"
+              class="w-full px-4 py-3 rounded-xl text-text-muted text-sm transition-colors duration-200 cursor-pointer"
+              style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.18); outline:none;"
+              onfocus="this.style.borderColor='rgba(13,148,136,0.5)'"
+              onblur="this.style.borderColor='rgba(13,148,136,0.18)'">
+              <option value="">Wybierz gatunek...</option>
+              <option>Szczur</option>
+              <option>Mysz</option>
+              <option>Chomik</option>
+              <option>Świnka morska</option>
+              <option>Królik</option>
+              <option>Chinchilla</option>
+              <option>Jeż</option>
+              <option>Koszatniczka</option>
+              <option>Inny</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-text-main mb-1.5" style="font-family:'Figtree',sans-serif;">Opis problemu *</label>
+            <textarea id="message" name="message" rows="4" required
+              class="w-full px-4 py-3 rounded-xl text-text-main placeholder-text-muted text-sm transition-colors duration-200 resize-none"
+              style="background:rgba(13,148,136,0.07); border:1px solid rgba(13,148,136,0.18); outline:none;"
+              placeholder="Opisz czego dotyczy wizyta i preferowany termin..."
+              onfocus="this.style.borderColor='rgba(13,148,136,0.5)'"
+              onblur="this.style.borderColor='rgba(13,148,136,0.18)'"></textarea>
+          </div>
+
+          <div id="form-message" class="hidden text-sm py-3 px-4 rounded-xl" role="alert" aria-live="polite"></div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full bg-cta hover:bg-cta-hover disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition-colors duration-200 cursor-pointer flex items-center justify-center gap-2"
+            style="font-family:'Figtree',sans-serif; font-size:1rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Wyślij wiadomość
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="border-t divider py-12 px-4" role="contentinfo">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0D9488,#14B8A6);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+          <span class="text-xl font-heading font-bold text-text-main" style="font-weight:700; letter-spacing:-0.02em;">Rodentica</span>
+        </div>
+        <p class="text-text-muted text-sm leading-relaxed max-w-xs">Specjalistyczna przychodnia weterynaryjna dla gryzoni i małych ssaków. Profesjonalna opieka, empatyczny zespół.</p>
+      </div>
+      <div>
+        <h3 class="font-heading font-semibold text-text-main mb-4 text-sm">Usługi</h3>
+        <ul class="space-y-2 text-sm text-text-muted list-none m-0 p-0" role="list">
+          <li><a href="#uslugi" class="hover:text-primary transition-colors duration-200 cursor-pointer">Badanie ogólne</a></li>
+          <li><a href="#uslugi" class="hover:text-primary transition-colors duration-200 cursor-pointer">Diagnostyka</a></li>
+          <li><a href="#uslugi" class="hover:text-primary transition-colors duration-200 cursor-pointer">Chirurgia</a></li>
+          <li><a href="#uslugi" class="hover:text-primary transition-colors duration-200 cursor-pointer">Stomatologia</a></li>
+          <li><a href="#uslugi" class="hover:text-primary transition-colors duration-200 cursor-pointer">Konsultacje online</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading font-semibold text-text-main mb-4 text-sm">Godziny</h3>
+        <ul class="space-y-2 text-sm text-text-muted list-none m-0 p-0" role="list">
+          <li>Poniedziałek–Piątek</li>
+          <li class="text-text-main font-medium">9:00 – 19:00</li>
+          <li class="mt-2">Sobota</li>
+          <li class="text-text-main font-medium">9:00 – 14:00</li>
+          <li class="mt-2">Niedziela – zamknięte</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+      <p>&copy; 2024 Rodentica. Wszelkie prawa zastrzeżone.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Polityka prywatności</a>
+        <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Regulamin</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', String(menuOpen));
+  });
+
+  // Close mobile menu on nav click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Form submit (demo)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('form-message');
+    const form = e.target;
+
+    // Basic validation
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      msg.textContent = 'Proszę wypełnić wszystkie wymagane pola.';
+      msg.className = 'text-sm py-3 px-4 rounded-xl';
+      msg.style.background = 'rgba(239,68,68,0.1)';
+      msg.style.border = '1px solid rgba(239,68,68,0.2)';
+      msg.style.color = '#FCA5A5';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Wysyłanie...';
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Wyślij wiadomość';
+      msg.textContent = 'Dziękujemy! Odpiszemy wkrótce.';
+      msg.className = 'text-sm py-3 px-4 rounded-xl';
+      msg.style.background = 'rgba(13,148,136,0.1)';
+      msg.style.border = '1px solid rgba(13,148,136,0.25)';
+      msg.style.color = '#14B8A6';
+      form.reset();
+    }, 1500);
+  }
+
+  // Navbar scroll effect
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.style.opacity = '1';
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>
