@@ -33,9 +33,11 @@ export default function DentistSVG() {
     rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.05)
 
     const { rx, ry } = rotRef.current
-    // CSS transform rotates around the transform-origin set on the element
-    // rotateY simulates left/right turn, rotateX simulates up/down nod
-    headGroupRef.current.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg)`
+    // SVG rotate(angle, cx, cy) keeps (cx,cy) fixed — head stays in place
+    headGroupRef.current.setAttribute(
+      'transform',
+      `rotate(${ry}, 150, 118) translate(0, ${rx * 1.2})`
+    )
 
     rafRef.current = requestAnimationFrame(updateHead)
   }, [])
@@ -155,7 +157,7 @@ export default function DentistSVG() {
         <rect x="127" y="192" width="46" height="38" rx="12" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
 
         {/* ===== HEAD GROUP (animated via JS) ===== */}
-        <g ref={headGroupRef} style={{ transformOrigin: '150px 118px', transformBox: 'view-box', perspective: '600px' }}>
+        <g ref={headGroupRef}>
           {/* Head shape – slightly oval, more feminine */}
           <ellipse cx="150" cy="118" rx="60" ry="68" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
 
