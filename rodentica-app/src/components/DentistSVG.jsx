@@ -24,22 +24,19 @@ export default function DentistSVG() {
     const dist = Math.sqrt(dx * dx + dy * dy)
 
     // Max tilt degrees (subtle = realistic)
-    const maxTiltX = 10  // nod up/down
-    const maxTiltY = 12  // turn left/right
+    const maxTiltY = 6  // turn left/right only
 
     const norm = Math.min(dist / 400, 1)
-    const targetRx = (dy / (dist || 1)) * norm * maxTiltX
     const targetRy = (dx / (dist || 1)) * norm * maxTiltY
 
     // Smooth lerp
-    rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.08)
-    rotRef.current.ry = lerp(rotRef.current.ry, targetRy, 0.08)
+    rotRef.current.ry = lerp(rotRef.current.ry, targetRy, 0.05)
 
-    const { rx, ry } = rotRef.current
+    const { ry } = rotRef.current
     // Pivot around head center (150, 125 in SVG coords)
     headGroupRef.current.setAttribute(
       'transform',
-      `rotate(${ry * 0.6}, 150, 125) skewX(${-ry * 0.3}) skewY(${rx * 0.3})`
+      `rotate(${ry}, 150, 125)`
     )
 
     rafRef.current = requestAnimationFrame(updateHead)
