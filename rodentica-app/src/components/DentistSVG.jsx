@@ -1,146 +1,105 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
+const lerp = (a, b, t) => a + (b - a) * t
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
-const lerp  = (a, b, t) => a + (b - a) * t
 
 export default function DentistSVG() {
-  const containerRef = useRef(null)
+  const svgRef       = useRef(null)
   const rafRef       = useRef(null)
   const mouseRef     = useRef({ x: 0, y: 0 })
-  const rotRef       = useRef({ ry: 0, rx: 0 })   // ry = left/right, rx = up/down
+  const pupilLRef    = useRef(null)
+  const pupilRRef    = useRef(null)
+  const irisLRef     = useRef(null)
+  const irisRRef     = useRef(null)
+  const rotRef       = useRef({ lx: 0, ly: 0, rx: 0, ry: 0 })
 
-  // Individual element refs for JS morphing
-  const faceRef      = useRef(null)   // face ellipse
-  const hairRef      = useRef(null)   // hair group
-  const leftEarRef   = useRef(null)   // left ear group
-  const rightEarRef  = useRef(null)   // right ear group
-  const leftEyeRef   = useRef(null)   // left eye group
-  const rightEyeRef  = useRef(null)   // right eye group
-  const leftBrowRef  = useRef(null)
-  const rightBrowRef = useRef(null)
-  const noseRef      = useRef(null)
-  const mouthRef     = useRef(null)
-  const leftCheekRef = useRef(null)
-  const rightCheekRef= useRef(null)
-  const headTiltRef  = useRef(null)   // outer group for up/down tilt via CSS
+  const updateEyes = useCallback(() => {
+    if (!svgRef.current) return
 
-  const updateHead = useCallback(() => {
-    if (!containerRef.current || !faceRef.current) return
+    const rect = svgRef.current.getBoundingClientRect()
+    const scaleX = rect.width  / 300
+    const scaleY = rect.height / 560
 
-    const rect = containerRef.current.getBoundingClientRect()
-    const headX = rect.left + rect.width  * 0.5
-    const headY = rect.top  + rect.height * 0.21   // head center ~21% down
+    // Eye centers in screen coords
+    const lEyeX = rect.left + 132 * scaleX
+    const lEyeY = rect.top  + 108 * scaleY
+    const rEyeX = rect.left + 168 * scaleX
+    const rEyeY = rect.top  + 108 * scaleY
 
-    const dx   = mouseRef.current.x - headX
-    const dy   = mouseRef.current.y - headY
-    const dist = Math.sqrt(dx * dx + dy * dy) || 1
-    const norm = Math.min(dist / 450, 1)
+    const mx = mouseRef.current.x
+    const my = mouseRef.current.y
 
-    const targetRy = (dx / dist) * norm * 28   // left/right ±28°
-    const targetRx = (dy / dist) * norm * 16   // up/down   ±16°
+    // Max iris travel from center
+    const maxMove = 3.5
 
-    rotRef.current.ry = lerp(rotRef.current.ry, targetRy, 0.07)
-    rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.07)
-
-    const raw = rotRef.current.ry
-    const tilt = rotRef.current.rx
-
-    // t: -1 = full left profile, 0 = front, +1 = full right profile
-    const t    = clamp(raw / 28, -1, 1)
-    const absT = Math.abs(t)
-    const sign = t > 0 ? 1 : -1
-
-    // ── Face ellipse: narrows as head turns ──────────────────────────
-    const faceRx = Math.max(7, 60 * Math.cos(absT * Math.PI / 2.05))
-    faceRef.current.setAttribute('rx', faceRx)
-    faceRef.current.setAttribute('cx', 150 + sign * absT * 7)
-
-    // ── How far features shift (nose, eyes ride on face surface) ─────
-    const featDx = sign * absT * 26   // max 26px lateral shift
-
-    // ── Hair ─────────────────────────────────────────────────────────
-    hairRef.current.setAttribute('transform', `translate(${featDx * 0.55}, 0)`)
-
-    // ── Ears ──────────────────────────────────────────────────────────
-    // Near ear (turn direction) stays visible, far ear fades behind face
-    const farEarOpacity = Math.max(0, 1 - absT * 2.8)
-    if (t >= 0) {
-      rightEarRef.current.setAttribute('opacity', '1')
-      leftEarRef.current.setAttribute('opacity',  farEarOpacity)
-    } else {
-      leftEarRef.current.setAttribute('opacity',  '1')
-      rightEarRef.current.setAttribute('opacity', farEarOpacity)
+    const calcOffset = (eyeX, eyeY) => {
+      const dx = mx - eyeX
+      const dy = my - eyeY
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1
+      const norm = Math.min(dist / 200, 1)
+      return { x: (dx / dist) * norm * maxMove, y: (dy / dist) * norm * maxMove }
     }
 
-    // ── Eyes & Brows ──────────────────────────────────────────────────
-    const farEyeOpacity = Math.max(0, 1 - absT * 2.2)
-    leftEyeRef.current.setAttribute('transform',  `translate(${featDx}, 0)`)
-    rightEyeRef.current.setAttribute('transform', `translate(${featDx}, 0)`)
-    leftBrowRef.current.setAttribute('transform',  `translate(${featDx}, 0)`)
-    rightBrowRef.current.setAttribute('transform', `translate(${featDx}, 0)`)
+    const lo = calcOffset(lEyeX, lEyeY)
+    const ro = calcOffset(rEyeX, rEyeY)
 
-    if (t >= 0) {
-      rightEyeRef.current.setAttribute('opacity', '1')
-      leftEyeRef.current.setAttribute('opacity',  farEyeOpacity)
-      rightBrowRef.current.setAttribute('opacity', '1')
-      leftBrowRef.current.setAttribute('opacity',  farEyeOpacity)
-    } else {
-      leftEyeRef.current.setAttribute('opacity',  '1')
-      rightEyeRef.current.setAttribute('opacity', farEyeOpacity)
-      leftBrowRef.current.setAttribute('opacity',  '1')
-      rightBrowRef.current.setAttribute('opacity', farEyeOpacity)
+    rotRef.current.lx = lerp(rotRef.current.lx, lo.x, 0.1)
+    rotRef.current.ly = lerp(rotRef.current.ly, lo.y, 0.1)
+    rotRef.current.rx = lerp(rotRef.current.rx, ro.x, 0.1)
+    rotRef.current.ry = lerp(rotRef.current.ry, ro.y, 0.1)
+
+    const { lx, ly, rx: rrx, ry: rry } = rotRef.current
+
+    if (irisLRef.current) {
+      irisLRef.current.setAttribute('cx', 132 + lx)
+      irisLRef.current.setAttribute('cy', 109 + ly)
+    }
+    if (pupilLRef.current) {
+      pupilLRef.current.setAttribute('cx', 132 + lx)
+      pupilLRef.current.setAttribute('cy', 109 + ly)
+    }
+    if (irisRRef.current) {
+      irisRRef.current.setAttribute('cx', 168 + rrx)
+      irisRRef.current.setAttribute('cy', 109 + rry)
+    }
+    if (pupilRRef.current) {
+      pupilRRef.current.setAttribute('cx', 168 + rrx)
+      pupilRRef.current.setAttribute('cy', 109 + rry)
     }
 
-    // ── Nose & Mouth ──────────────────────────────────────────────────
-    noseRef.current.setAttribute('transform',  `translate(${featDx}, 0)`)
-    mouthRef.current.setAttribute('transform', `translate(${featDx * 0.85}, 0)`)
-
-    // ── Cheek blush ───────────────────────────────────────────────────
-    leftCheekRef.current.setAttribute('opacity',  String(0.4 * Math.max(0, 1 - absT * 1.8)))
-    rightCheekRef.current.setAttribute('opacity', String(0.4 * Math.max(0, 1 - absT * 1.8)))
-
-    // ── Up/down tilt: CSS rotateX on outer group ──────────────────────
-    if (headTiltRef.current) {
-      headTiltRef.current.style.transform = `perspective(700px) rotateX(${-tilt * 0.5}deg)`
-      headTiltRef.current.style.transformOrigin = '150px 118px'
-      headTiltRef.current.style.transformBox = 'view-box'
-    }
-
-    rafRef.current = requestAnimationFrame(updateHead)
+    rafRef.current = requestAnimationFrame(updateEyes)
   }, [])
 
   useEffect(() => {
     const onMove = (e) => { mouseRef.current = { x: e.clientX, y: e.clientY } }
     window.addEventListener('mousemove', onMove, { passive: true })
-    rafRef.current = requestAnimationFrame(updateHead)
+    rafRef.current = requestAnimationFrame(updateEyes)
     return () => {
       window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(rafRef.current)
     }
-  }, [updateHead])
+  }, [updateEyes])
 
   return (
     <motion.div
-      ref={containerRef}
       className="relative flex items-center justify-center select-none"
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-      style={{ width: 300, height: 560 }}
     >
-      {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <div className="w-72 h-72 rounded-full bg-brand-400/10 blur-3xl" />
       </div>
 
       <svg
+        ref={svgRef}
         viewBox="0 0 300 560"
         width="300"
         height="560"
         xmlns="http://www.w3.org/2000/svg"
         aria-label="Animowana higienistka stomatologiczna"
         role="img"
-        style={{ overflow: 'visible', filter: 'drop-shadow(0 20px 48px rgba(14,165,233,0.14))' }}
+        style={{ filter: 'drop-shadow(0 20px 48px rgba(14,165,233,0.14))', overflow: 'visible' }}
       >
         <defs>
           <linearGradient id="dCoat" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -172,7 +131,7 @@ export default function DentistSVG() {
           </filter>
         </defs>
 
-        {/* ── BODY (fully static) ── */}
+        {/* Body */}
         <rect x="68" y="225" width="164" height="230" rx="24" fill="url(#dCoat)" stroke="#E2E8F0" strokeWidth="1.5" filter="url(#dShadow)" />
         <path d="M 68 230 L 98 278 L 150 260 L 202 278 L 232 230" fill="url(#dCoat)" stroke="#CBD5E1" strokeWidth="1.5" />
         <path d="M 112 248 L 150 268 L 188 248 L 188 292 L 112 292 Z" fill="url(#dBlue)" opacity="0.9" />
@@ -203,96 +162,60 @@ export default function DentistSVG() {
         <ellipse cx="122" cy="530" rx="24" ry="12" fill="#0F172A" />
         <ellipse cx="178" cy="530" rx="24" ry="12" fill="#0F172A" />
 
-        {/* Neck (static) */}
+        {/* Neck */}
         <rect x="127" y="192" width="46" height="38" rx="12" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
 
-        {/* ── HEAD GROUP (JS-morphed for 3D effect) ── */}
-        <g ref={headTiltRef}>
+        {/* Head */}
+        <ellipse cx="150" cy="118" rx="60" ry="68" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
 
-          {/* Face base */}
-          <ellipse ref={faceRef} cx="150" cy="118" rx="60" ry="68"
-            fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
+        {/* Hair */}
+        <path d="M 90 95 Q 85 44 150 40 Q 215 44 210 95 Q 202 58 150 56 Q 98 58 90 95 Z" fill="url(#dHair)" />
+        <path d="M 90 95 Q 86 115 90 140 Q 91 152 98 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
+        <path d="M 210 95 Q 214 115 210 140 Q 209 152 202 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
+        <path d="M 130 46 Q 150 42 170 47" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.4" />
+        <ellipse cx="150" cy="40" rx="22" ry="14" fill="url(#dHair)" />
 
-          {/* Hair */}
-          <g ref={hairRef}>
-            <path d="M 90 95 Q 85 44 150 40 Q 215 44 210 95 Q 202 58 150 56 Q 98 58 90 95 Z" fill="url(#dHair)" />
-            <path d="M 90 95 Q 86 115 90 140 Q 91 152 98 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
-            <path d="M 210 95 Q 214 115 210 140 Q 209 152 202 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
-            <path d="M 130 46 Q 150 42 170 47" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.4" />
-            <ellipse cx="150" cy="40" rx="22" ry="14" fill="url(#dHair)" />
-            <path d="M 128 40 Q 150 30 172 40" stroke="#92400E" strokeWidth="2" fill="none" opacity="0.5" />
-          </g>
+        {/* Ears */}
+        <ellipse cx="91" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        <circle cx="91" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
+        <ellipse cx="209" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        <circle cx="209" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
 
-          {/* Left ear */}
-          <g ref={leftEarRef}>
-            <ellipse cx="91" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
-            <path d="M 95 112 Q 98 120 95 128" stroke="#DDA882" strokeWidth="1.5" fill="none" />
-            <circle cx="91" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
-          </g>
+        {/* Eyebrows */}
+        <path d="M 118 87 Q 130 80 142 85" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
+        <path d="M 158 85 Q 170 80 182 87" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
 
-          {/* Right ear */}
-          <g ref={rightEarRef}>
-            <ellipse cx="209" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
-            <path d="M 205 112 Q 202 120 205 128" stroke="#DDA882" strokeWidth="1.5" fill="none" />
-            <circle cx="209" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
-          </g>
+        {/* Left eye */}
+        <ellipse cx="132" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
+        <path d="M 119 105 Q 132 98 145 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <circle ref={irisLRef} cx="132" cy="109" r="8" fill="url(#dIris)" />
+        <circle ref={pupilLRef} cx="132" cy="109" r="4.5" fill="#0F172A" />
+        <circle cx="135" cy="106" r="2.2" fill="white" opacity="0.9" />
+        <path d="M 120 113 Q 132 116 144 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
 
-          {/* Left eyebrow */}
-          <g ref={leftBrowRef}>
-            <path d="M 118 87 Q 130 80 142 85" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
-          </g>
+        {/* Right eye */}
+        <ellipse cx="168" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
+        <path d="M 155 105 Q 168 98 181 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <circle ref={irisRRef} cx="168" cy="109" r="8" fill="url(#dIris)" />
+        <circle ref={pupilRRef} cx="168" cy="109" r="4.5" fill="#0F172A" />
+        <circle cx="171" cy="106" r="2.2" fill="white" opacity="0.9" />
+        <path d="M 156 113 Q 168 116 180 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
 
-          {/* Right eyebrow */}
-          <g ref={rightBrowRef}>
-            <path d="M 158 85 Q 170 80 182 87" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
-          </g>
+        {/* Nose */}
+        <path d="M 150 118 Q 145 130 147 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M 150 118 Q 155 130 153 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M 144 136 Q 150 140 156 136" stroke="#CC9466" strokeWidth="1.8" fill="none" strokeLinecap="round" />
 
-          {/* Left eye */}
-          <g ref={leftEyeRef}>
-            <ellipse cx="132" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
-            <path d="M 119 103 Q 132 96 145 103" fill="#E8D5C4" opacity="0.5" />
-            <path d="M 119 105 Q 132 98 145 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-            <circle cx="132" cy="109" r="8" fill="url(#dIris)" />
-            <circle cx="132" cy="109" r="4.5" fill="#0F172A" />
-            <circle cx="135" cy="106" r="2.2" fill="white" opacity="0.9" />
-            <circle cx="130" cy="111" r="1" fill="white" opacity="0.5" />
-            <path d="M 120 113 Q 132 116 144 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
-          </g>
+        {/* Lips */}
+        <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148" stroke="#C0705A" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M 136 148 Q 150 162 164 148" stroke="#C0705A" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M 139 149 Q 150 157 161 149 L 160 155 Q 150 161 140 155 Z" fill="white" stroke="#F0E6E0" strokeWidth="0.5" />
+        <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148 Q 150 150 136 148 Z" fill="#E8947A" opacity="0.5" />
+        <path d="M 136 148 Q 150 155 164 148 Q 150 158 136 148 Z" fill="#E8947A" opacity="0.3" />
 
-          {/* Right eye */}
-          <g ref={rightEyeRef}>
-            <ellipse cx="168" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
-            <path d="M 155 103 Q 168 96 181 103" fill="#E8D5C4" opacity="0.5" />
-            <path d="M 155 105 Q 168 98 181 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-            <circle cx="168" cy="109" r="8" fill="url(#dIris)" />
-            <circle cx="168" cy="109" r="4.5" fill="#0F172A" />
-            <circle cx="171" cy="106" r="2.2" fill="white" opacity="0.9" />
-            <circle cx="166" cy="111" r="1" fill="white" opacity="0.5" />
-            <path d="M 156 113 Q 168 116 180 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
-          </g>
-
-          {/* Nose */}
-          <g ref={noseRef}>
-            <path d="M 150 118 Q 145 130 147 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M 150 118 Q 155 130 153 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M 144 136 Q 150 140 156 136" stroke="#CC9466" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-          </g>
-
-          {/* Mouth */}
-          <g ref={mouthRef}>
-            <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148" stroke="#C0705A" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-            <path d="M 136 148 Q 150 162 164 148" stroke="#C0705A" strokeWidth="2" fill="none" strokeLinecap="round" />
-            <path d="M 139 149 Q 150 157 161 149 L 160 155 Q 150 161 140 155 Z" fill="white" stroke="#F0E6E0" strokeWidth="0.5" />
-            <line x1="150" y1="149" x2="150" y2="156" stroke="#F0E6E0" strokeWidth="0.8" />
-            <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148 Q 150 150 136 148 Z" fill="#E8947A" opacity="0.5" />
-            <path d="M 136 148 Q 150 155 164 148 Q 150 158 136 148 Z" fill="#E8947A" opacity="0.3" />
-          </g>
-
-          {/* Cheeks */}
-          <ellipse ref={leftCheekRef}  cx="113" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
-          <ellipse ref={rightCheekRef} cx="187" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
-
-        </g>{/* end headTiltRef */}
+        {/* Cheeks */}
+        <ellipse cx="113" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
+        <ellipse cx="187" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
 
         {/* Floating tooth */}
         <g opacity="0.8">
