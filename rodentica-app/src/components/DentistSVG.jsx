@@ -23,21 +23,19 @@ export default function DentistSVG() {
     const dy = mouseRef.current.y - headScreenY
     const dist = Math.sqrt(dx * dx + dy * dy)
 
-    // Max tilt degrees (subtle = realistic)
-    const maxTiltY = 6  // turn left/right only
-
     const norm = Math.min(dist / 400, 1)
-    const targetRy = (dx / (dist || 1)) * norm * maxTiltY
+    // Left/right rotation, max ±8deg
+    const targetRy = (dx / (dist || 1)) * norm * 8
+    // Up/down tilt, max ±5deg
+    const targetRx = (dy / (dist || 1)) * norm * 5
 
-    // Smooth lerp
     rotRef.current.ry = lerp(rotRef.current.ry, targetRy, 0.05)
+    rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.05)
 
-    const { ry } = rotRef.current
-    // Pivot around head center (150, 125 in SVG coords)
-    headGroupRef.current.setAttribute(
-      'transform',
-      `rotate(${ry}, 150, 125)`
-    )
+    const { rx, ry } = rotRef.current
+    // CSS transform rotates around the transform-origin set on the element
+    // rotateY simulates left/right turn, rotateX simulates up/down nod
+    headGroupRef.current.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg)`
 
     rafRef.current = requestAnimationFrame(updateHead)
   }, [])
@@ -157,7 +155,7 @@ export default function DentistSVG() {
         <rect x="127" y="192" width="46" height="38" rx="12" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
 
         {/* ===== HEAD GROUP (animated via JS) ===== */}
-        <g ref={headGroupRef} style={{ transformOrigin: '150px 125px', transformBox: 'fill-box' }}>
+        <g ref={headGroupRef} style={{ transformOrigin: '150px 118px', transformBox: 'view-box', perspective: '600px' }}>
           {/* Head shape – slightly oval, more feminine */}
           <ellipse cx="150" cy="118" rx="60" ry="68" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
 
