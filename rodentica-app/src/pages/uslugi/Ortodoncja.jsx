@@ -5,12 +5,12 @@ export default function Ortodoncja() {
   return (
     <ServicePageTemplate
       title="Ortodoncja"
-      subtitle="Proste zęby i piękny uśmiech w każdym wieku"
+      subtitle="Proste zęby i zdrowy zgryz dla dzieci i dorosłych"
       Icon={AlignJustify}
       breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Ortodoncja' }]}
       intro={[
-        'Ortodoncja zajmuje się korekcją nieprawidłowego ustawienia zębów i szczęk – krzywi i nieprawidłowo ustawione zęby są trudniejsze do czyszczenia, co sprzyja próchnicy i chorobom dziąseł, a wady zgryzu mogą powodować bóle głowy, szyi i stawów skroniowo-żuchwowych. Leczenie ortodontyczne jest skuteczne zarówno u dzieci, jak i u dorosłych, a jego efekty służą przez całe życie.',
-        'Oferujemy pełen zakres leczenia ortodontycznego – od aparatów stałych metalowych i estetycznych, przez aparaty ruchome dla dzieci, aż po nowoczesne niewidoczne alignery Clear Liner. Indywidualnie dobieramy metodę leczenia do potrzeb, wieku i trybu życia każdego pacjenta, zapewniając komfort i dyskrecję przez cały czas terapii.',
+        'Ortodoncja zajmuje się korygowaniem nieprawidłowego ustawienia zębów i szczęk, które nie tylko wpływa na estetykę uśmiechu, ale przede wszystkim na zdrowie jamy ustnej. Krzywe lub stłoczone zęby są trudniejsze do czyszczenia, co prowadzi do chorób przyzębia, a wady zgryzu mogą powodować bóle głowy, szyi i problemy ze stawem skroniowo-żuchwowym.',
+        'Leczenie ortodontyczne prowadzimy zarówno u dzieci (od ok. 6–7 roku życia), jak i u dorosłych w każdym wieku. Oprócz tradycyjnych aparatów stałych oferujemy nowoczesny system Clear Liner – niewidoczne alignery, które pozwalają na dyskretne i komfortowe prostowanie zębów bez rezygnacji z codziennych aktywności.',
       ]}
       benefits={[
         'Proste, zdrowe i łatwe w czyszczeniu zęby',
@@ -21,14 +21,14 @@ export default function Ortodoncja() {
         'Pewność siebie i komfort',
       ]}
       procedures={[
-        { title: 'Diagnostyka – modele gipsowe, RTG, zdjęcia', desc: 'Kompleksowa diagnostyka ortodontyczna obejmująca odlewy gipsowe łuków zębowych, zdjęcia cefalometryczne i pantomograficzne oraz dokumentację fotograficzną.' },
-        { title: 'Ustalenie planu leczenia ortodontycznego', desc: 'Na podstawie zebranych danych ortodonta opracowuje indywidualny plan leczenia, uwzględniający cel terapeutyczny i przewidywany czas leczenia.' },
-        { title: 'Aparaty stałe standardowe (metalowe)', desc: 'Klasyczne aparaty stałe z metalowymi zamkami – sprawdzone, skuteczne i trwałe rozwiązanie dla pacjentów w każdym wieku.' },
-        { title: 'Aparaty stałe estetyczne (ceramiczne/szafirowe)', desc: 'Aparaty stałe z przezroczystymi lub szafirowo-białymi zamkami ceramicznymi – skuteczność metalowych przy dyskretnym wyglądzie.' },
-        { title: 'Aparaty ruchome dla dzieci', desc: 'Zdejmowane aparaty ortodontyczne stosowane u dzieci w fazie uzębienia mieszanego – korygują wady zgryzu i kierują wzrostem szczęk.' },
-        { title: 'Clear Liner – niewidoczne alignery', desc: 'Seria przezroczystych, zdejmowanych szyn stopniowo prostujących zęby – niewidoczne, wygodne i łatwe w utrzymaniu higieny.' },
-        { title: 'Comiesięczne wizyty kontrolne', desc: 'Regularne wizyty u ortodonty pozwalają monitorować postęp leczenia i wprowadzać niezbędne korekty – zazwyczaj co 4–6 tygodni.' },
-        { title: 'Zdjęcie aparatu i retencja', desc: 'Po zakończeniu aktywnej fazy leczenia aparat zostaje zdjęty, a pacjent otrzymuje retainer utrzymujący wyprostowane zęby w nowej pozycji.' },
+        { title: 'Diagnostyka – modele gipsowe, RTG, zdjęcia', desc: 'Kompleksowa ocena zgryzu na podstawie modeli zębów, zdjęć rentgenowskich cefalometrycznych i fotografii.' },
+        { title: 'Ustalenie planu leczenia ortodontycznego', desc: 'Opracowanie indywidualnego planu leczenia z określeniem czasu trwania i przewidywanych efektów.' },
+        { title: 'Aparaty stałe standardowe (metalowe)', desc: 'Klasyczne aparaty z metalowymi zamkami i drutami – skuteczne i sprawdzone rozwiązanie dla dzieci i młodzieży.' },
+        { title: 'Aparaty stałe estetyczne (ceramiczne/szafirowe)', desc: 'Aparaty stałe z przezroczystymi lub porcelanowymi zamkami – mniej widoczne niż metalowe.' },
+        { title: 'Aparaty ruchome dla dzieci', desc: 'Zdejmowane aparaty ortodontyczne stosowane we wczesnej fazie leczenia u dzieci w wieku 6–12 lat.' },
+        { title: 'Clear Liner – niewidoczne alignery', desc: 'Seria przezroczystych nakładek prostujących zęby – zdejmowane, wygodne i całkowicie niewidoczne.' },
+        { title: 'Comiesięczne wizyty kontrolne', desc: 'Regularne wizyty kontrolne umożliwiają monitorowanie postępu leczenia i korektę aparatu.' },
+        { title: 'Zdjęcie aparatu i retencja', desc: 'Po zakończeniu aktywnego leczenia zakładamy retainer utrwalający efekty – stały lub zdejmowany.' },
       ]}
       price="od 900 zł"
       priceDetails={[

@@ -1,43 +1,42 @@
-import { Heart } from 'lucide-react'
 import ServicePageTemplate from '../../components/ServicePageTemplate'
+import { Heart } from 'lucide-react'
 
 export default function StomatologiaZachowawcza() {
   return (
     <ServicePageTemplate
       title="Stomatologia Zachowawcza"
-      subtitle="Leczenie i zapobieganie próchnicy. Wszystkie zabiegi wykonywane bezbolesnie dzięki znieczuleniu komputerowemu The WAND."
+      subtitle="Zdrowe zęby bez bólu i stresu"
       Icon={Heart}
       breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Stomatologia Zachowawcza' }]}
       intro={[
-        'Najczęstszym problemem pacjentów jest próchnica – choroba twardych tkanek zęba takich jak szkliwo i zębina. Leczenie zachowawcze opiera się przede wszystkim na zapobieganiu i leczeniu tej choroby. Szczególnie ważne są regularne wizyty kontrolne, dzięki którym dentyści mogą zdiagnozować próchnicę w jej najwcześniejszym stadium i zatrzymać jej rozwój.',
-        'Dzięki nowoczesnemu aparatowi do znieczulenia The WAND wszystkie zabiegi są całkowicie bezbolesne. Nieleczona próchnica stanowi poważny problem i prowadzi do stanów zapalnych miazgi, które wymagają leczenia kanałowego. Nasi specjaliści doradzą jak prawidłowo dbać o higienę, jakich preparatów używać i jak myć zęby, aby zapobiec powstawaniu próchnicy.',
+        'Stomatologia zachowawcza koncentruje się na zapobieganiu i leczeniu próchnicy – najczęstszego problemu stomatologicznego, który dotyka zarówno dzieci, jak i dorosłych. Regularne wizyty kontrolne co 6 miesięcy pozwalają wykryć zmiany próchnicowe na wczesnym etapie, gdy leczenie jest proste, szybkie i tanie.',
+        'W naszym gabinecie każdy zabieg – nawet pozornie błahe wypełnienie – wykonujemy z najwyższą starannością i w pełnym znieczuleniu komputerowym The WAND. Dzięki temu wyeliminowaliśmy ból i stres z gabinetu stomatologicznego, a pacjenci wychodzą od nas z pięknym, estetycznym uśmiechem i spokojem ducha.',
       ]}
       benefits={[
         'Całkowicie bezbolesne zabiegi (The WAND)',
-        'Wczesne wykrycie i leczenie próchnicy',
-        'Estetyczne wypełnienia kompozytowe',
-        'Leczenie nadwrażliwości zębów',
+        'Wczesne wykrycie próchnicy',
+        'Piękne estetyczne wypełnienia',
+        'Leczenie nadwrażliwości',
         'Profilaktyka dla dzieci i dorosłych',
-        'Indywidualne porady dotyczące higieny',
+        'Indywidualne porady higieniczne',
       ]}
       procedures={[
-        { title: 'Profilaktyka próchnicy – lakowanie bruzd', desc: 'Uszczelnienie powierzchni żujących zębów specjalnym lakierem, który zapobiega powstawaniu próchnicy.' },
-        { title: 'Lakierowanie fluoryzacyjne', desc: 'Wzmocnienie szkliwa preparatami fluoru – szczególnie ważne dla dzieci i osób z nadwrażliwością.' },
-        { title: 'Leczenie próchnicy', desc: 'Oczyszczenie zęba z próchnicy i wypełnienie nowoczesnym materiałem kompozytowym.' },
-        { title: 'Wypełnienia kompozytowe', desc: 'Estetyczne, trwałe wypełnienia dopasowane kolorystycznie do naturalnego uzębienia.' },
-        { title: 'Leczenie nadwrażliwości zębów', desc: 'Zamknięcie kanalików zębinowych preparatami odczulającymi lub lakierem fluorowym.' },
-        { title: 'Rekonstrukcja zniszczonych zębów', desc: 'Odbudowa korony zęba silnie zniszczonego przez próchnicę lub uraz.' },
+        { title: 'Profilaktyka próchnicy – lakowanie bruzd', desc: 'Uszczelnienie szczelin i bruzd na powierzchniach żujących zębów bocznych specjalnym lakierem, zapobiegające gromadzeniu się płytki bakteryjnej.' },
+        { title: 'Lakierowanie fluoryzacyjne', desc: 'Aplikacja fluorowego lakieru na powierzchnie zębów wzmacniająca szkliwo i zmniejszająca ryzyko próchnicy.' },
+        { title: 'Leczenie próchnicy (usuwanie zmian)', desc: 'Usunięcie zmienionej próchnicowo tkanki zęba z użyciem wiertła lub lasera i przygotowanie ubytku do wypełnienia.' },
+        { title: 'Wypełnienia kompozytowe (estetyczne)', desc: 'Wypełnienia z materiału kompozytowego dopasowanego kolorystycznie do naturalnego zęba – trwałe i niewidoczne.' },
+        { title: 'Leczenie nadwrażliwości zębów', desc: 'Aplikacja preparatów zmniejszających nadwrażliwość szyjek zębowych i dyskomfort przy spożywaniu zimnych lub gorących pokarmów.' },
+        { title: 'Rekonstrukcja zniszczonych zębów', desc: 'Odbudowa zębów z rozległymi ubytkami przy użyciu materiałów kompozytowych lub wkładów koronowych.' },
+        { title: 'Porady higieniczne – prawidłowe mycie zębów', desc: 'Instruktaż prawidłowej techniki szczotkowania, nitkowania i użycia płynów do płukania ust.' },
       ]}
       price="od 180 zł"
       priceDetails={[
+        { label: 'Leczenie zachowawcze', value: 'od 180 zł' },
+        { label: 'Profilaktyka (lakowanie)', value: 'od 100 zł' },
         { label: 'Konsultacja', value: 'od 50 zł' },
-        { label: 'Leczenie zachowawcze (wypełnienie)', value: 'od 180 zł' },
-        { label: 'Lakowanie bruzd', value: 'od 100 zł' },
-        { label: 'Znieczulenie The WAND', value: '35 zł' },
       ]}
-      note="Nieleczona próchnica prowadzi do stanów zapalnych miazgi i konieczności leczenia kanałowego. Regularne wizyty kontrolne co 6 miesięcy pozwalają wykryć problem we wczesnym stadium."
       relatedServices={[
-        { label: 'Profilaktyka i Higiena', href: '/uslugi/profilaktyka' },
+        { label: 'Profilaktyka', href: '/uslugi/profilaktyka' },
         { label: 'Leczenie Kanałowe', href: '/uslugi/leczenie-kanalowe' },
         { label: 'Stomatologia Dziecięca', href: '/uslugi/stomatologia-dziecieca' },
       ]}

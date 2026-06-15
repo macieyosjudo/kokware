@@ -1,48 +1,48 @@
-import { Microscope } from 'lucide-react'
 import ServicePageTemplate from '../../components/ServicePageTemplate'
+import { Microscope } from 'lucide-react'
 
 export default function Profilaktyka() {
   return (
     <ServicePageTemplate
-      title="Profilaktyka i Higiena Jamy Ustnej"
-      subtitle="Profesjonalne zabiegi higienizacyjne przez dyplomowane higienistki. Klucz do zdrowego uśmiechu przez całe życie."
+      title="Profilaktyka"
+      subtitle="Zdrowy uśmiech przez długie lata"
       Icon={Microscope}
-      breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Profilaktyka i Higiena' }]}
+      breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Profilaktyka' }]}
       intro={[
-        'Profilaktyka pozwala na utrzymanie pięknego i zdrowego uśmiechu przez wiele lat. Współczesna stomatologia dysponuje bardzo szerokim asortymentem preparatów i urządzeń, które pomagają w utrzymaniu prawidłowej higieny jamy ustnej. Nasze dyplomowane higienistki stomatologiczne przeprowadzają kompleksowe zabiegi higienizacyjne i edukują pacjentów w zakresie właściwej pielęgnacji.',
-        'Obok tradycyjnych szczoteczek do zębów jest wiele profesjonalnych szczoteczek elektrycznych. Do poprawy higieny dziąseł i przestrzeni międzyzębowych wynaleziono irygator, który znacznie podnosi jakość zabiegów higienicznych. Zabiegi higienizacyjne powinny być wykonywane regularnie – zalecamy wizytę co 6 miesięcy.',
+        'Profilaktyka stomatologiczna to fundament zdrowego i pięknego uśmiechu przez wiele lat. Profesjonalne zabiegi higienizacyjne wykonywane przez wykwalifikowanych higienistek stomatologicznych usuwają kamień nazębny, przebarwienia i osady, których nie da się usunąć zwykłą szczoteczką – stanowią one doskonałe uzupełnienie codziennej pielęgnacji domowej.',
+        'Podczas każdej wizyty higienizacyjnej udzielamy szczegółowych porad dotyczących prawidłowego mycia zębów, doboru szczoteczki elektrycznej, irigatora i nici dentystycznej. Nowoczesne podejście do profilaktyki łączy profesjonalne czyszczenie z edukacją pacjenta – bo regularne wizyty co 6 miesięcy to najlepszy i najtańszy sposób na unikanie kosztownego leczenia stomatologicznego.',
       ]}
       benefits={[
         'Piękny i zdrowy uśmiech przez lata',
         'Zapobieganie próchnicy i chorobom dziąseł',
         'Profesjonalne usuwanie kamienia i przebarwień',
-        'Świeży oddech',
-        'Indywidualne porady dotyczące higieny domowej',
+        'Wybielanie zębów',
+        'Porady dotyczące higieny domowej',
         'Regularne wizyty zapobiegają kosztownemu leczeniu',
       ]}
       procedures={[
-        { title: 'Skaling – usuwanie kamienia', desc: 'Profesjonalne usuwanie twardych złogów (kamienia nazębnego) z powierzchni zębów i z przestrzeni poddziąsłowej.' },
-        { title: 'Piaskowanie – usuwanie przebarwień', desc: 'Usuwanie przebarwień od kawy, herbaty, wina i tytoniu metodą strumieniowo-ścierną.' },
-        { title: 'Polerowanie powierzchni zębów', desc: 'Wygładzenie powierzchni zębów pastą polerską po zabiegu higienizacji.' },
-        { title: 'Fluoryzacja', desc: 'Wzmocnienie szkliwa preparatami fluoru – szczególnie zalecane u dzieci i osób z nadwrażliwością.' },
-        { title: 'Instrukcja higieny jamy ustnej', desc: 'Indywidualny instruktaż prawidłowego mycia zębów, używania nici i irigatora.' },
-        { title: 'Dobór odpowiednich produktów', desc: 'Rekomendacje pasty, szczoteczki, płynu i nici dopasowane do indywidualnych potrzeb.' },
-        { title: 'Wybielanie profesjonalne', desc: 'Wybielanie zębów w gabinecie metodą ZOOM lub nakładkowe domowe.' },
+        { title: 'Usuwanie kamienia nazębnego (skaling)', desc: 'Usuwanie twardych złogów kamienia nazębnego za pomocą skalera ultradźwiękowego – bezbolesne i skuteczne.' },
+        { title: 'Usuwanie przebarwień i osadów (piaskowanie)', desc: 'Usuwanie przebarwień od kawy, herbaty i papierosów strumieniem piasku pod ciśnieniem – zęby odzyskują naturalną biel.' },
+        { title: 'Polerowanie zębów', desc: 'Końcowy etap higienizacji – polerowanie powierzchni zębów pastą, która usuwa resztki osadów i wygładza szkliwo.' },
+        { title: 'Fluoryzacja (wzmocnienie szkliwa)', desc: 'Aplikacja wysokoskoncentrowanego preparatu fluorowego na oczyszczone zęby – wzmacnia szkliwo i zmniejsza nadwrażliwość.' },
+        { title: 'Wybielanie profesjonalne', desc: 'Wybielanie zębów w gabinecie lub nakładkowe – przywraca naturalny, jasny odcień zębów.' },
+        { title: 'Instrukcja higieny jamy ustnej', desc: 'Praktyczna nauka prawidłowej techniki szczotkowania i nitkowania zębów dostosowana do indywidualnych potrzeb pacjenta.' },
+        { title: 'Dobór szczoteczki i pasty', desc: 'Rekomendacja odpowiedniej szczoteczki (elektrycznej lub manualnej) i pasty do zębów w zależności od stanu jamy ustnej.' },
+        { title: 'Porady dotyczące irigatora', desc: 'Instruktaż użycia irigatora – urządzenia do płukania przestrzeni międzyzębowych strumieniem wody.' },
       ]}
       price="od 100 zł"
       priceDetails={[
         { label: 'Skaling', value: 'od 150 zł' },
         { label: 'Piaskowanie', value: 'od 150 zł' },
         { label: 'Fluoryzacja', value: 'od 80 zł' },
-        { label: 'Higienizacja kompletna (skaling + piaskowanie + polerowanie)', value: 'od 300 zł' },
-        { label: 'Znieczulenie The WAND (jeśli wymagane)', value: '35 zł' },
+        { label: 'Higienizacja kompletna', value: 'od 300 zł' },
+        { label: 'Znieczulenie The WAND', value: '35 zł' },
       ]}
-      note="Zalecamy wizytę higienizacyjną co 6 miesięcy. Regularne profesjonalne czyszczenie jest tańsze i prostsze niż leczenie próchnicy lub chorób przyzębia, które mogą wyniknąć z zaniedbań."
+      note="Zabiegi higienizacyjne powinny być wykonywane regularnie – zalecamy wizytę co 6 miesięcy. Regularne czyszczenie zapobiega próchnicy, chorobom dziąseł i nieprzyjemnemu oddechowi."
       relatedServices={[
         { label: 'Stomatologia Zachowawcza', href: '/uslugi/stomatologia-zachowawcza' },
         { label: 'Periodontologia', href: '/uslugi/periodontologia' },
         { label: 'Stomatologia Dziecięca', href: '/uslugi/stomatologia-dziecieca' },
-        { label: 'Stomatologia Estetyczna', href: '/uslugi/stomatologia-estetyczna' },
       ]}
     />
   )

@@ -1,48 +1,47 @@
-import { Scissors } from 'lucide-react'
 import ServicePageTemplate from '../../components/ServicePageTemplate'
+import { Scissors } from 'lucide-react'
 
 export default function Chirurgia() {
   return (
     <ServicePageTemplate
       title="Chirurgia Stomatologiczna"
-      subtitle="Ekstrakcje, usuwanie ósemek i zabiegi plastyczne – bezboleśnie, w znieczuleniu komputerowym The WAND."
+      subtitle="Bezpieczne zabiegi chirurgiczne bez bólu"
       Icon={Scissors}
-      breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Chirurgia Stomatologiczna' }]}
+      breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Chirurgia' }]}
       intro={[
-        'Chirurgia stomatologiczna obejmuje szereg zabiegów – od prostych ekstrakcji zębów po skomplikowane operacje usuwania zębów zatrzymanych, resekcje wierzchołków korzeni i zabiegi plastyczne tkanek miękkich. Wszystkie procedury wykonywane są przez doświadczonych specjalistów przy użyciu nowoczesnego sprzętu.',
-        'Wszystkie zabiegi chirurgiczne wykonywane są bezbolesnie, w znieczuleniu miejscowym z użyciem komputerowego systemu The WAND. Po każdym zabiegu pacjent otrzymuje szczegółowe instrukcje dotyczące pielęgnacji rany i zalecenia pozabiegowe. Nasze wieloletnie doświadczenie gwarantuje bezpieczny przebieg zabiegu i szybką rekonwalescencję.',
+        'Chirurgia stomatologiczna obejmuje szerokie spektrum zabiegów – od ekstrakcji prostych i chirurgicznego usuwania zębów zatrzymanych, przez resekcję wierzchołka korzenia i hemisekcję zębów trzonowych, po zabiegi plastyczne tkanek miękkich jamy ustnej. Dysponujemy nowoczesnym sprzętem i materiałami biozgodnymi do augmentacji kości, co otwiera drogę do leczenia implantologicznego nawet u pacjentów z niewystarczającą ilością kości.',
+        'Wszystkie zabiegi chirurgiczne wykonujemy przy użyciu komputerowego systemu znieczulenia The WAND, który eliminuje ból zarówno podczas podawania znieczulenia, jak i w trakcie samego zabiegu. Nasz doświadczony zespół chirurgiczny zapewnia szybką rekonwalescencję i minimalne ryzyko powikłań pozabiegowych.',
       ]}
       benefits={[
-        'Całkowicie bezbolesne zabiegi (The WAND)',
-        'Doświadczony zespół chirurgiczny',
+        'Całkowicie bezbolesne zabiegi',
+        'Znieczulenie komputerowe The WAND',
         'Szybka rekonwalescencja',
-        'Sterowana regeneracja kości (GTR)',
+        'Sterowana regeneracja kości',
         'Biomateriały kościozastępcze',
-        'Szczegółowe instrukcje pozabiegowe',
+        'Doświadczony zespół chirurgiczny',
       ]}
       procedures={[
-        { title: 'Ekstrakcja prosta zębów', desc: 'Bezbolesne usuwanie zębów nierokujących poprawy zdrowia.' },
-        { title: 'Chirurgiczne usuwanie zębów zatrzymanych', desc: 'Chirurgiczne wydobycie zębów, które nie wyrżnęły się prawidłowo.' },
-        { title: 'Usuwanie zębów mądrości (ósemek)', desc: 'Często wymagające nacięcia dziąsła i usunięcia fragmentu kości.' },
-        { title: 'Resekcja wierzchołka korzenia', desc: 'Odcięcie wierzchołka korzenia i usunięcie zmian zapalnych – torbiele i granulaki.' },
-        { title: 'Hemisekcja zębów trzonowych', desc: 'Przecięcie zęba na pół i usunięcie chorego korzenia przy zachowaniu zdrowej części.' },
-        { title: 'Podcinanie wędzidełka', desc: 'Korekta nieprawidłowego przyczepu wędzidełka wargi górnej i dolnej.' },
-        { title: 'Augmentacja kości', desc: 'Odbudowa kości przed planowanym wszczepieniem implantów.' },
-        { title: 'Zabiegi plastyczne błony śluzowej', desc: 'Usuwanie przerostów i korekty tkanek miękkich przed leczeniem protetycznym.' },
+        { title: 'Ekstrakcja zębów (usuwanie)', desc: 'Usunięcie zęba w znieczuleniu miejscowym – proste ekstrakcje wykonujemy szybko i komfortowo dla pacjenta.' },
+        { title: 'Chirurgiczne usuwanie zębów zatrzymanych', desc: 'Operacyjne usunięcie zębów, które nie wyrżnęły się prawidłowo i tkwią w kości lub dziąśle.' },
+        { title: 'Usuwanie zębów mądrości (ósemek)', desc: 'Ekstrakcja ósemek – zarówno wyrżniętych, jak i zatrzymanych – w znieczuleniu miejscowym lub sedacji.' },
+        { title: 'Resekcja wierzchołka korzenia', desc: 'Zabieg polegający na chirurgicznym usunięciu zmienionej zapalnie tkanki przy wierzchołku korzenia zęba.' },
+        { title: 'Hemisekcja zębów trzonowych', desc: 'Podział zęba trzonowego na dwie części w celu usunięcia jednego korzenia przy zachowaniu reszty zęba.' },
+        { title: 'Podcinanie wędzidełka wargi górnej i dolnej', desc: 'Plastyka wędzidełka wargi lub języka – zabieg wskazany przy trudnościach z mówieniem lub higieną.' },
+        { title: 'Zabiegi plastyczne błony śluzowej', desc: 'Chirurgiczne modelowanie dziąseł i błony śluzowej jamy ustnej w celach estetycznych lub funkcjonalnych.' },
+        { title: 'Augmentacja kości (przed implantami)', desc: 'Uzupełnienie niedoborów kości za pomocą biomateriałów kościozastępczych w celu przygotowania miejsca pod implant.' },
+        { title: 'Sterowana regeneracja kości (GTR)', desc: 'Zaawansowana technika odbudowy kości z użyciem membran prowadzących regenerację – stosowana w implantologii i periodontologii.' },
       ]}
       price="od 200 zł"
       priceDetails={[
         { label: 'Ekstrakcja prosta', value: 'od 200 zł' },
         { label: 'Usunięcie ósemki', value: 'od 400 zł' },
-        { label: 'Resekcja wierzchołka korzenia', value: 'od 600 zł' },
+        { label: 'Resekcja wierzchołka', value: 'od 600 zł' },
         { label: 'Podcinanie wędzidełka', value: 'od 350 zł' },
-        { label: 'Znieczulenie The WAND', value: '35 zł' },
       ]}
-      note="Po zabiegu chirurgicznym mogą wystąpić obrzęk i lekki dyskomfort przez kilka dni. Postępuj zgodnie z instrukcjami lekarza – zimne okłady i przepisane leki przyspieszą gojenie."
+      note="Wszystkie zabiegi chirurgiczne wykonywane są w znieczuleniu miejscowym z użyciem The WAND. Po zabiegu otrzymasz szczegółowe instrukcje pielęgnacji rany."
       relatedServices={[
         { label: 'Implantologia', href: '/uslugi/implantologia' },
         { label: 'Stomatologia Zachowawcza', href: '/uslugi/stomatologia-zachowawcza' },
-        { label: 'Leczenie Kanałowe', href: '/uslugi/leczenie-kanalowe' },
       ]}
     />
   )
