@@ -5,12 +5,12 @@ export default function LeczeniKanalowe() {
   return (
     <ServicePageTemplate
       title="Leczenie Kanałowe"
-      subtitle="Ratujemy zęby zamiast je usuwać"
+      subtitle="Ratujemy Twoje zęby z precyzją i bez bólu"
       Icon={ShieldCheck}
       breadcrumb={[{ label: 'Usługi', href: '/uslugi' }, { label: 'Leczenie Kanałowe' }]}
       intro={[
-        'Endodoncja, czyli leczenie kanałowe, to specjalistyczna dziedzina stomatologii, której celem jest ratowanie zębów zagrożonych usunięciem z powodu zaawansowanego stanu zapalnego miazgi lub tkanek okołowierzchołkowych. Dzięki leczeniu kanałowemu możemy uratować ząb, który dawniej musiałby być usunięty, zachowując naturalne uzębienie pacjenta na długie lata.',
-        'W naszej klinice leczenie kanałowe przeprowadzamy pod kontrolą mikroskopu stomatologicznego, co umożliwia dokładne opracowanie nawet najtrudniejszych kanałów. Stosujemy rotacyjne narzędzia niklowo-tytanowe najwyższej klasy oraz dezynfekcję ultradźwiękową, a wszystko odbywa się w warunkach pełnej izolacji od śliny za pomocą koferdamy.',
+        'Endodoncja, czyli leczenie kanałowe, to dziedzina stomatologii skupiająca się na ratowaniu zębów zamiast ich usuwania. Dzięki pracy pod kontrolą mikroskopu stomatologicznego lekarz ma pełny wgląd w układ kanałów korzeniowych, co pozwala na precyzyjne mechaniczne i chemiczne opracowanie oraz wypełnienie kanałów materiałami biozgodnymi.',
+        'W naszym gabinecie stosujemy najnowocześniejsze narzędzia rotacyjne i ultradźwiękowe, a każdy zabieg wykonujemy w pełnej izolacji od śliny (koferdama). Znieczulenie komputerowe The WAND sprawia, że nawet najbardziej rozległe leczenie kanałowe jest całkowicie bezbolesne i komfortowe dla pacjenta.',
       ]}
       benefits={[
         'Ratujemy zęby zamiast je usuwać',
@@ -21,14 +21,14 @@ export default function LeczeniKanalowe() {
         'Skuteczne i długotrwałe rezultaty',
       ]}
       procedures={[
-        { title: 'Diagnostyka RTG kanałów', desc: 'Szczegółowe zdjęcie rentgenowskie pozwalające ocenić długość, przebieg i liczbę kanałów korzeniowych przed rozpoczęciem leczenia.' },
-        { title: 'Znieczulenie komputerowe The WAND', desc: 'Precyzyjne i bezbolesne znieczulenie miejscowe podawane przez komputerowy system The WAND – eliminuje nieprzyjemne uczucie pieczenia i bólu.' },
-        { title: 'Opracowanie kanałów narzędziami rotacyjnymi', desc: 'Mechaniczne poszerzenie i ukształtowanie kanałów korzeniowych przy użyciu precyzyjnych narzędzi niklowo-tytanowych pod kontrolą mikroskopu.' },
-        { title: 'Dezynfekcja narzędziami ultradźwiękowymi', desc: 'Dokładne oczyszczenie kanałów z bakterii i resztek tkanek przy użyciu aktywacji ultradźwiękowej płukania – gwarancja sterylności.' },
-        { title: 'Wypełnienie kanałów materiałem biozgodnym', desc: 'Trwałe uszczelnienie oczyszczonych kanałów materiałem guttaperka i uszczelniaczem – zapobiega ponownemu zakażeniu.' },
-        { title: 'Odbudowa korony zęba', desc: 'Po zakończeniu leczenia kanałowego ząb wymaga odbudowy – wykonujemy wkłady koronowe i korony ceramiczne chroniące osłabioną strukturę zęba.' },
-        { title: 'Usuwanie złamanych narzędzi', desc: 'Specjalistyczne usuwanie fragmentów złamanych narzędzi endodontycznych z kanałów korzeniowych pod kontrolą mikroskopu.' },
-        { title: 'Ponowne leczenie kanałowe', desc: 'Rewizja wcześniej nieprawidłowo leczonego zęba – skuteczna alternatywa dla ekstrakcji w przypadku nawrotu stanu zapalnego.' },
+        { title: 'Diagnostyka RTG kanałów', desc: 'Ocena liczby, kształtu i długości kanałów korzeniowych na podstawie zdjęcia rentgenowskiego.' },
+        { title: 'Znieczulenie komputerowe The WAND', desc: 'Bezbolesne podanie znieczulenia miejscowego przy użyciu komputerowo kontrolowanego systemu The WAND.' },
+        { title: 'Opracowanie kanałów rotacyjnymi narzędziami', desc: 'Mechaniczne poszerzanie i kształtowanie kanałów korzeniowych przy użyciu specjalistycznych narzędzi rotacyjnych.' },
+        { title: 'Dezynfekcja narzędziami ultradźwiękowymi', desc: 'Dokładne oczyszczenie i dezynfekcja kanałów przy użyciu ultradźwięków i płynów płuczących.' },
+        { title: 'Wypełnienie kanałów materiałem biozgodnym', desc: 'Szczelne wypełnienie oczyszczonych kanałów gutaperką i uszczelniaczem kanałowym.' },
+        { title: 'Odbudowa korony zęba', desc: 'Po leczeniu kanałowym ząb wymaga odbudowy – wykonujemy ją kompozytem lub proponujemy koronę protetyczną.' },
+        { title: 'Usuwanie złamanych narzędzi', desc: 'Specjalistyczne zabiegi usuwania fragmentów narzędzi endodontycznych pozostałych w kanałach po wcześniejszym leczeniu.' },
+        { title: 'Ponowne leczenie kanałowe', desc: 'Rewizja kanałów po nieskutecznym wcześniejszym leczeniu – dokładna reinstrumentacja i ponowne wypełnienie.' },
       ]}
       price="od 400 zł"
       priceDetails={[
