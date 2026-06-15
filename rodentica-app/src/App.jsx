@@ -9,6 +9,8 @@ import Cennik from './pages/Cennik'
 import Technologia from './pages/Technologia'
 import Zespol from './pages/Zespol'
 import Kontakt from './pages/Kontakt'
+import Certyfikaty from './pages/Certyfikaty'
+import Galeria from './pages/Galeria'
 
 // Service pages
 import StomatologiaEstetyczna from './pages/uslugi/StomatologiaEstetyczna'
@@ -54,6 +56,8 @@ function Layout() {
           <Route path="/technologia" element={<Technologia />} />
           <Route path="/zespol" element={<Zespol />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/certyfikaty" element={<Certyfikaty />} />
+          <Route path="/galeria" element={<Galeria />} />
           {/* 404 */}
           <Route path="*" element={
             <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 pt-24">

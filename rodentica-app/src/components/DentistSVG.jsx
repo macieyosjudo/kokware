@@ -3,164 +3,260 @@ import { motion } from 'framer-motion'
 
 export default function DentistSVG() {
   const svgRef = useRef(null)
-  const leftPupilRef = useRef(null)
-  const rightPupilRef = useRef(null)
+  const headGroupRef = useRef(null)
   const rafRef = useRef(null)
   const mouseRef = useRef({ x: 0, y: 0 })
+  // smooth current rotation
+  const rotRef = useRef({ rx: 0, ry: 0 })
 
-  const updateEyes = useCallback(() => {
-    if (!svgRef.current || !leftPupilRef.current || !rightPupilRef.current) return
+  const lerp = (a, b, t) => a + (b - a) * t
+
+  const updateHead = useCallback(() => {
+    if (!svgRef.current || !headGroupRef.current) return
+
     const rect = svgRef.current.getBoundingClientRect()
-    const svgCx = rect.left + rect.width / 2
-    const svgCy = rect.top + rect.height * 0.26
-    const dx = mouseRef.current.x - svgCx
-    const dy = mouseRef.current.y - svgCy
-    const angle = Math.atan2(dy, dx)
-    const d = 3.5
-    leftPupilRef.current.setAttribute('cx', 132 + Math.cos(angle) * d)
-    leftPupilRef.current.setAttribute('cy', 108 + Math.sin(angle) * d)
-    rightPupilRef.current.setAttribute('cx', 168 + Math.cos(angle) * d)
-    rightPupilRef.current.setAttribute('cy', 108 + Math.sin(angle) * d)
+    // SVG coordinate of the head center in screen space
+    const headScreenX = rect.left + rect.width * 0.5
+    const headScreenY = rect.top + rect.height * 0.24
+
+    const dx = mouseRef.current.x - headScreenX
+    const dy = mouseRef.current.y - headScreenY
+    const dist = Math.sqrt(dx * dx + dy * dy)
+
+    // Max tilt degrees (subtle = realistic)
+    const maxTiltX = 10  // nod up/down
+    const maxTiltY = 12  // turn left/right
+
+    const norm = Math.min(dist / 400, 1)
+    const targetRx = (dy / (dist || 1)) * norm * maxTiltX
+    const targetRy = (dx / (dist || 1)) * norm * maxTiltY
+
+    // Smooth lerp
+    rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.08)
+    rotRef.current.ry = lerp(rotRef.current.ry, targetRy, 0.08)
+
+    const { rx, ry } = rotRef.current
+    // Pivot around head center (150, 125 in SVG coords)
+    headGroupRef.current.setAttribute(
+      'transform',
+      `rotate(${ry * 0.6}, 150, 125) skewX(${-ry * 0.3}) skewY(${rx * 0.3})`
+    )
+
+    rafRef.current = requestAnimationFrame(updateHead)
   }, [])
 
   useEffect(() => {
-    const onMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY }
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = requestAnimationFrame(updateEyes)
-    }
+    const onMove = (e) => { mouseRef.current = { x: e.clientX, y: e.clientY } }
     window.addEventListener('mousemove', onMove, { passive: true })
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafRef.current) }
-  }, [updateEyes])
+    rafRef.current = requestAnimationFrame(updateHead)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [updateHead])
 
   return (
     <motion.div
-      className="relative flex items-center justify-center"
+      className="relative flex items-center justify-center select-none"
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
     >
+      {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-        <div className="w-72 h-72 rounded-full bg-brand-500/8 blur-3xl" />
+        <div className="w-72 h-72 rounded-full bg-brand-400/10 blur-3xl" />
       </div>
+
       <svg
         ref={svgRef}
-        viewBox="0 0 300 520"
+        viewBox="0 0 300 560"
         width="300"
-        height="520"
+        height="560"
         xmlns="http://www.w3.org/2000/svg"
-        aria-label="Animowana postać dentysty"
+        aria-label="Animowana higienistka stomatologiczna"
         role="img"
-        style={{ filter: 'drop-shadow(0 20px 40px rgba(14,165,233,0.15))' }}
+        style={{ filter: 'drop-shadow(0 20px 48px rgba(14,165,233,0.14))', overflow: 'visible' }}
       >
         <defs>
-          <linearGradient id="coat" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="dCoat" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="100%" stopColor="#F1F5F9" />
+            <stop offset="100%" stopColor="#EEF2FF" />
           </linearGradient>
-          <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="dSkin" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FDDCBC" />
-            <stop offset="100%" stopColor="#F9C197" />
+            <stop offset="100%" stopColor="#F5B98A" />
           </linearGradient>
-          <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="dBlue" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#0EA5E9" />
             <stop offset="100%" stopColor="#06B6D4" />
           </linearGradient>
-          <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1E293B" />
-            <stop offset="100%" stopColor="#334155" />
+          <linearGradient id="dHair" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#92400E" />
+            <stop offset="60%" stopColor="#B45309" />
+            <stop offset="100%" stopColor="#78350F" />
           </linearGradient>
-          <radialGradient id="iris" cx="40%" cy="35%">
-            <stop offset="0%" stopColor="#1E40AF" />
-            <stop offset="100%" stopColor="#1E293B" />
+          <linearGradient id="dIris" cx="35%" cy="30%" r="65%" fx="35%" fy="30%" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stopColor="#2563EB" />
+            <stop offset="60%" stopColor="#1D4ED8" />
+            <stop offset="100%" stopColor="#1E3A8A" />
+          </linearGradient>
+          <radialGradient id="dIrisR" cx="35%" cy="30%" r="65%" fx="35%" fy="30%" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stopColor="#2563EB" />
+            <stop offset="100%" stopColor="#1E3A8A" />
           </radialGradient>
+          <filter id="dShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#00000018" />
+          </filter>
+          <filter id="dFaceShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="2" dy="4" stdDeviation="6" floodColor="#0000001A" />
+          </filter>
         </defs>
 
-        {/* Coat body */}
-        <rect x="72" y="210" width="156" height="220" rx="22" fill="url(#coat)" stroke="#E2E8F0" strokeWidth="1.5" />
+        {/* ===== BODY (static) ===== */}
+        {/* Lab coat */}
+        <rect x="68" y="225" width="164" height="230" rx="24" fill="url(#dCoat)" stroke="#E2E8F0" strokeWidth="1.5" filter="url(#dShadow)" />
         {/* Lapels */}
-        <path d="M 72 215 L 100 260 L 150 245 L 200 260 L 228 215" fill="url(#coat)" stroke="#CBD5E1" strokeWidth="1.5" />
-        {/* Scrubs */}
-        <path d="M 115 235 L 150 260 L 185 235 L 185 280 L 115 280 Z" fill="url(#blue)" opacity="0.85" />
-        {/* Left arm + sleeve */}
-        <path d="M 72 230 C 45 240 38 290 42 330 C 44 350 55 360 68 355 L 80 310 C 65 305 60 275 72 255 Z" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        <path d="M 72 230 C 52 238 48 270 55 300 L 80 295 C 72 270 75 245 88 232 Z" fill="url(#coat)" stroke="#E2E8F0" strokeWidth="1.5" />
-        {/* Right arm + sleeve */}
-        <path d="M 228 230 C 255 240 262 290 258 330 C 256 350 245 360 232 355 L 220 310 C 235 305 240 275 228 255 Z" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        <path d="M 228 230 C 248 238 252 270 245 300 L 220 295 C 228 270 225 245 212 232 Z" fill="url(#coat)" stroke="#E2E8F0" strokeWidth="1.5" />
+        <path d="M 68 230 L 98 278 L 150 260 L 202 278 L 232 230" fill="url(#dCoat)" stroke="#CBD5E1" strokeWidth="1.5" />
+        {/* Scrubs underneath */}
+        <path d="M 112 248 L 150 268 L 188 248 L 188 292 L 112 292 Z" fill="url(#dBlue)" opacity="0.9" />
+        {/* Left sleeve + arm */}
+        <path d="M 68 248 C 40 258 33 308 37 348 C 39 368 50 378 65 373 L 76 325 C 62 320 56 292 68 272 Z" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        <path d="M 68 248 C 48 256 44 288 51 316 L 76 311 C 68 288 70 262 85 250 Z" fill="url(#dCoat)" stroke="#E2E8F0" strokeWidth="1.5" />
+        {/* Right sleeve + arm */}
+        <path d="M 232 248 C 260 258 267 308 263 348 C 261 368 250 378 235 373 L 224 325 C 238 320 244 292 232 272 Z" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        <path d="M 232 248 C 252 256 256 288 249 316 L 224 311 C 232 288 230 262 215 250 Z" fill="url(#dCoat)" stroke="#E2E8F0" strokeWidth="1.5" />
         {/* Hands */}
-        <ellipse cx="58" cy="348" rx="16" ry="14" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        <ellipse cx="242" cy="348" rx="16" ry="14" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        {/* Tool */}
-        <line x1="248" y1="340" x2="268" y2="308" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="270" cy="305" r="5" fill="url(#blue)" />
-        <line x1="270" y1="300" x2="278" y2="292" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
-        {/* Neck */}
-        <rect x="128" y="178" width="44" height="36" rx="10" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        {/* Head */}
-        <ellipse cx="150" cy="120" rx="58" ry="64" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        {/* Hair */}
-        <path d="M 92 95 Q 88 48 150 44 Q 212 48 208 95 Q 200 62 150 60 Q 100 62 92 95 Z" fill="url(#hair)" />
-        <path d="M 92 95 Q 90 110 94 118" stroke="#1E293B" strokeWidth="8" strokeLinecap="round" fill="none" />
-        <path d="M 208 95 Q 210 110 206 118" stroke="#1E293B" strokeWidth="8" strokeLinecap="round" fill="none" />
-        {/* Ears */}
-        <ellipse cx="93" cy="122" rx="10" ry="14" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        <ellipse cx="207" cy="122" rx="10" ry="14" fill="url(#skin)" stroke="#E2BFA0" strokeWidth="1.5" />
-        {/* Eyebrows */}
-        <path d="M 118 90 Q 130 84 140 88" stroke="#334155" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        <path d="M 160 88 Q 170 84 182 90" stroke="#334155" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        {/* Eye whites */}
-        <ellipse cx="132" cy="108" rx="12" ry="10" fill="white" stroke="#E2E8F0" strokeWidth="1" />
-        <ellipse cx="168" cy="108" rx="12" ry="10" fill="white" stroke="#E2E8F0" strokeWidth="1" />
-        {/* Iris */}
-        <circle cx="132" cy="108" r="7" fill="url(#iris)" />
-        <circle cx="168" cy="108" r="7" fill="url(#iris)" />
-        {/* Pupils */}
-        <circle ref={leftPupilRef} cx="132" cy="108" r="4" fill="#0EA5E9" />
-        <circle ref={rightPupilRef} cx="168" cy="108" r="4" fill="#0EA5E9" />
-        {/* Eye shine */}
-        <circle cx="135" cy="105" r="2" fill="white" opacity="0.8" />
-        <circle cx="171" cy="105" r="2" fill="white" opacity="0.8" />
-        {/* Nose */}
-        <path d="M 146 132 Q 150 136 154 132" stroke="#D4956C" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        {/* Smile + teeth */}
-        <path d="M 133 148 Q 150 162 167 148" stroke="#1E293B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        <path d="M 137 149 Q 150 158 163 149 L 162 155 Q 150 162 138 155 Z" fill="white" stroke="#E2E8F0" strokeWidth="0.5" />
-        <line x1="150" y1="149" x2="150" y2="156" stroke="#E2E8F0" strokeWidth="0.8" />
-        {/* Blush */}
-        <ellipse cx="115" cy="135" rx="12" ry="7" fill="#FECACA" opacity="0.35" />
-        <ellipse cx="185" cy="135" rx="12" ry="7" fill="#FECACA" opacity="0.35" />
+        <ellipse cx="53" cy="368" rx="17" ry="15" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        <ellipse cx="247" cy="368" rx="17" ry="15" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+        {/* Dental mirror in right hand */}
+        <line x1="253" y1="358" x2="276" y2="323" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="277" cy="321" r="7" fill="white" stroke="#94A3B8" strokeWidth="1.5" />
+        <ellipse cx="277" cy="321" rx="5" ry="5" fill="#BAE6FD" opacity="0.7" />
         {/* Stethoscope */}
-        <path d="M 115 245 Q 105 265 110 280 Q 115 295 130 290 Q 145 285 140 270 Q 138 260 148 255" stroke="#64748B" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <circle cx="148" cy="253" r="8" fill="#94A3B8" stroke="#64748B" strokeWidth="2" />
-        <circle cx="148" cy="253" r="4" fill="url(#blue)" />
-        {/* Buttons */}
-        <circle cx="150" cy="295" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
-        <circle cx="150" cy="320" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
-        <circle cx="150" cy="345" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
-        {/* Pocket */}
-        <rect x="172" y="270" width="36" height="28" rx="4" fill="none" stroke="#CBD5E1" strokeWidth="1.5" />
-        <line x1="180" y1="270" x2="180" y2="264" stroke="#0EA5E9" strokeWidth="3" strokeLinecap="round" />
-        <line x1="188" y1="270" x2="188" y2="262" stroke="#06B6D4" strokeWidth="3" strokeLinecap="round" />
-        {/* Badge */}
-        <rect x="80" y="265" width="62" height="36" rx="4" fill="white" stroke="#E2E8F0" strokeWidth="1.5" />
-        <text x="111" y="280" textAnchor="middle" fontSize="6" fill="#0EA5E9" fontWeight="600" fontFamily="Outfit, sans-serif">Rodentica</text>
-        <text x="111" y="290" textAnchor="middle" fontSize="5" fill="#64748B" fontFamily="Outfit, sans-serif">Stomatolog</text>
-        {/* Legs */}
-        <rect x="105" y="415" width="38" height="90" rx="10" fill="#334155" />
-        <rect x="157" y="415" width="38" height="90" rx="10" fill="#334155" />
+        <path d="M 112 260 Q 100 282 105 298 Q 110 314 126 310 Q 142 306 138 290 Q 136 280 146 274" stroke="#64748B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        <circle cx="146" cy="272" r="9" fill="#94A3B8" stroke="#64748B" strokeWidth="1.5" />
+        <circle cx="146" cy="272" r="5" fill="url(#dBlue)" />
+        {/* Coat buttons */}
+        <circle cx="150" cy="312" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
+        <circle cx="150" cy="338" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
+        <circle cx="150" cy="364" r="4" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
+        {/* Pocket with pens */}
+        <rect x="172" y="284" width="38" height="30" rx="4" fill="none" stroke="#CBD5E1" strokeWidth="1.5" />
+        <line x1="180" y1="284" x2="180" y2="276" stroke="#0EA5E9" strokeWidth="3" strokeLinecap="round" />
+        <line x1="189" y1="284" x2="189" y2="273" stroke="#06B6D4" strokeWidth="3" strokeLinecap="round" />
+        <line x1="198" y1="284" x2="198" y2="277" stroke="#F97316" strokeWidth="3" strokeLinecap="round" />
+        {/* Name badge */}
+        <rect x="78" y="278" width="66" height="40" rx="5" fill="white" stroke="#E2E8F0" strokeWidth="1.5" />
+        <rect x="82" y="282" width="58" height="32" rx="3" fill="url(#dBlue)" opacity="0.08" />
+        <text x="111" y="297" textAnchor="middle" fontSize="6.5" fill="#0EA5E9" fontWeight="700" fontFamily="Outfit, sans-serif">Rodentica</text>
+        <text x="111" y="308" textAnchor="middle" fontSize="5.5" fill="#64748B" fontFamily="Outfit, sans-serif">Higienistka</text>
+        {/* Trousers */}
+        <rect x="102" y="440" width="40" height="95" rx="12" fill="#1E3A5F" />
+        <rect x="158" y="440" width="40" height="95" rx="12" fill="#1E3A5F" />
         {/* Shoes */}
-        <ellipse cx="124" cy="500" rx="22" ry="12" fill="#1E293B" />
-        <ellipse cx="176" cy="500" rx="22" ry="12" fill="#1E293B" />
-        {/* Floating tooth */}
-        <g opacity="0.85">
-          <circle cx="260" cy="80" r="20" fill="white" stroke="#E2E8F0" strokeWidth="1.5" />
-          <path d="M 250 76 Q 260 68 270 76 Q 278 84 274 94 Q 268 100 260 98 Q 252 100 246 94 Q 242 84 250 76 Z" fill="white" stroke="#BAE6FD" strokeWidth="1.5" />
-          <path d="M 254 90 L 256 98 M 266 90 L 264 98" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" />
+        <ellipse cx="122" cy="530" rx="24" ry="12" fill="#0F172A" />
+        <ellipse cx="178" cy="530" rx="24" ry="12" fill="#0F172A" />
+
+        {/* ===== NECK (static) ===== */}
+        <rect x="127" y="192" width="46" height="38" rx="12" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+
+        {/* ===== HEAD GROUP (animated via JS) ===== */}
+        <g ref={headGroupRef} style={{ transformOrigin: '150px 125px', transformBox: 'fill-box' }}>
+          {/* Head shape – slightly oval, more feminine */}
+          <ellipse cx="150" cy="118" rx="60" ry="68" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
+
+          {/* ---- HAIR ---- */}
+          {/* Top volume */}
+          <path d="M 90 95 Q 85 44 150 40 Q 215 44 210 95 Q 202 58 150 56 Q 98 58 90 95 Z" fill="url(#dHair)" />
+          {/* Side left hair */}
+          <path d="M 90 95 Q 86 115 90 140 Q 91 152 98 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
+          {/* Side right hair */}
+          <path d="M 210 95 Q 214 115 210 140 Q 209 152 202 158" stroke="url(#dHair)" strokeWidth="10" strokeLinecap="round" fill="none" />
+          {/* Hair highlight */}
+          <path d="M 130 46 Q 150 42 170 47" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.4" />
+          {/* Bun/updo at back of head */}
+          <ellipse cx="150" cy="40" rx="22" ry="14" fill="url(#dHair)" />
+          <path d="M 128 40 Q 150 30 172 40" stroke="#92400E" strokeWidth="2" fill="none" opacity="0.5" />
+
+          {/* Ears */}
+          <ellipse cx="91" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+          <path d="M 95 112 Q 98 120 95 128" stroke="#DDA882" strokeWidth="1.5" fill="none" />
+          {/* Earring */}
+          <circle cx="91" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
+
+          <ellipse cx="209" cy="120" rx="10" ry="14" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
+          <path d="M 205 112 Q 202 120 205 128" stroke="#DDA882" strokeWidth="1.5" fill="none" />
+          <circle cx="209" cy="130" r="3" fill="#0EA5E9" stroke="white" strokeWidth="1" />
+
+          {/* Eyebrows – arched, feminine */}
+          <path d="M 118 87 Q 130 80 142 85" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
+          <path d="M 158 85 Q 170 80 182 87" stroke="#78350F" strokeWidth="2.8" fill="none" strokeLinecap="round" />
+
+          {/* ---- EYES ---- */}
+          {/* Left eye white */}
+          <ellipse cx="132" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
+          {/* Left upper eyelid shadow */}
+          <path d="M 119 103 Q 132 96 145 103" fill="#E8D5C4" opacity="0.5" />
+          {/* Left eyelid line */}
+          <path d="M 119 105 Q 132 98 145 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+          {/* Left iris */}
+          <circle cx="132" cy="109" r="8" fill="url(#dIrisR)" />
+          {/* Left pupil */}
+          <circle cx="132" cy="109" r="4.5" fill="#0F172A" />
+          {/* Left eye shine */}
+          <circle cx="135" cy="106" r="2.2" fill="white" opacity="0.9" />
+          <circle cx="130" cy="111" r="1" fill="white" opacity="0.5" />
+          {/* Left lower lashes */}
+          <path d="M 120 113 Q 132 116 144 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
+
+          {/* Right eye white */}
+          <ellipse cx="168" cy="108" rx="13" ry="11" fill="white" stroke="#E2E8F0" strokeWidth="1" />
+          {/* Right upper eyelid shadow */}
+          <path d="M 155 103 Q 168 96 181 103" fill="#E8D5C4" opacity="0.5" />
+          {/* Right eyelid line */}
+          <path d="M 155 105 Q 168 98 181 105" stroke="#5C3317" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+          {/* Right iris */}
+          <circle cx="168" cy="109" r="8" fill="url(#dIrisR)" />
+          {/* Right pupil */}
+          <circle cx="168" cy="109" r="4.5" fill="#0F172A" />
+          {/* Right eye shine */}
+          <circle cx="171" cy="106" r="2.2" fill="white" opacity="0.9" />
+          <circle cx="166" cy="111" r="1" fill="white" opacity="0.5" />
+          {/* Right lower lashes */}
+          <path d="M 156 113 Q 168 116 180 113" stroke="#78350F" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.6" />
+
+          {/* ---- NOSE ---- */}
+          <path d="M 150 118 Q 145 130 147 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M 150 118 Q 155 130 153 135" stroke="#DDA882" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M 144 136 Q 150 140 156 136" stroke="#CC9466" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+
+          {/* ---- LIPS ---- */}
+          {/* Upper lip */}
+          <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148" stroke="#C0705A" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+          {/* Smile */}
+          <path d="M 136 148 Q 150 162 164 148" stroke="#C0705A" strokeWidth="2" fill="none" strokeLinecap="round" />
+          {/* Teeth */}
+          <path d="M 139 149 Q 150 157 161 149 L 160 155 Q 150 161 140 155 Z" fill="white" stroke="#F0E6E0" strokeWidth="0.5" />
+          <line x1="150" y1="149" x2="150" y2="156" stroke="#F0E6E0" strokeWidth="0.8" />
+          {/* Lip fill */}
+          <path d="M 136 148 Q 143 143 150 145 Q 157 143 164 148 Q 150 150 136 148 Z" fill="#E8947A" opacity="0.5" />
+          <path d="M 136 148 Q 150 155 164 148 Q 150 158 136 148 Z" fill="#E8947A" opacity="0.3" />
+
+          {/* Cheek blush */}
+          <ellipse cx="113" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
+          <ellipse cx="187" cy="130" rx="14" ry="9" fill="#FECACA" opacity="0.4" />
         </g>
+
+        {/* Floating tooth decoration */}
+        <g opacity="0.8">
+          <circle cx="262" cy="76" r="22" fill="white" stroke="#BAE6FD" strokeWidth="1.5" filter="url(#dShadow)" />
+          <path d="M 251 72 Q 262 63 273 72 Q 281 81 277 92 Q 271 99 262 97 Q 253 99 247 92 Q 243 81 251 72 Z" fill="white" stroke="#7DD3FC" strokeWidth="1.5" />
+          <path d="M 255 89 L 257 97 M 267 89 L 265 97" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" />
+        </g>
+
         {/* Sparkles */}
-        <circle cx="48" cy="160" r="3" fill="#0EA5E9" opacity="0.5" />
-        <circle cx="260" cy="185" r="2.5" fill="#06B6D4" opacity="0.45" />
-        <circle cx="38" cy="285" r="2" fill="#38BDF8" opacity="0.4" />
+        <circle cx="46" cy="165" r="3" fill="#0EA5E9" opacity="0.45" />
+        <circle cx="36" cy="290" r="2.5" fill="#38BDF8" opacity="0.4" />
+        <circle cx="264" cy="188" r="2.5" fill="#06B6D4" opacity="0.4" />
       </svg>
     </motion.div>
   )

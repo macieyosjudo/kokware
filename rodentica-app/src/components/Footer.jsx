@@ -61,6 +61,8 @@ export default function Footer() {
                 { label: 'Cennik', href: '/cennik' },
                 { label: 'Technologia', href: '/technologia' },
                 { label: 'Nasz Zespół', href: '/zespol' },
+                { label: 'Certyfikaty', href: '/certyfikaty' },
+                { label: 'Galeria', href: '/galeria' },
                 { label: 'Kontakt', href: '/kontakt' },
               ].map(i => (
                 <li key={i.href}>

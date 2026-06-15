@@ -23,7 +23,15 @@ const navLinks = [
   },
   { label: 'Cennik', href: '/cennik' },
   { label: 'Technologia', href: '/technologia' },
-  { label: 'Zespół', href: '/zespol' },
+  {
+    label: 'O nas',
+    href: '/zespol',
+    children: [
+      { label: 'Nasz Zespół', href: '/zespol' },
+      { label: 'Certyfikaty', href: '/certyfikaty' },
+      { label: 'Galeria', href: '/galeria' },
+    ],
+  },
   { label: 'Kontakt', href: '/kontakt' },
 ]
 
@@ -191,7 +199,7 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
 
-              {navLinks.slice(1).map(({ label, href }) => (
+              {navLinks.slice(1).filter(l => !l.children).map(({ label, href }) => (
                 <Link
                   key={href}
                   to={href}
@@ -200,6 +208,14 @@ export default function Navbar() {
                   {label}
                 </Link>
               ))}
+              {/* O nas submenu mobile */}
+              <div className="ml-4 border-l-2 border-brand-100 pl-4 flex flex-col gap-1">
+                {[{ label: 'Nasz Zespół', href: '/zespol' }, { label: 'Certyfikaty', href: '/certyfikaty' }, { label: 'Galeria', href: '/galeria' }].map(item => (
+                  <Link key={item.href} to={item.href} className="py-2 text-sm text-gray-600 hover:text-brand-600 cursor-pointer">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
 
               <div className="mt-3 pt-3 border-t border-gray-100 flex flex-col gap-2">
                 <a href="tel:+48338123123" className="flex items-center justify-center gap-2 py-3 rounded-xl border border-brand-200 text-brand-600 text-sm font-semibold cursor-pointer">

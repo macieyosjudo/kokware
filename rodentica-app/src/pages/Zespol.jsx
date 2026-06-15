@@ -82,24 +82,24 @@ export default function Zespol() {
       </section>
 
       {/* Assistants */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50" aria-label="Asystentki stomatologiczne">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50" aria-label="Higienistki stomatologiczne">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal direction="right">
               <span className="inline-block bg-brand-50 text-brand-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Personel</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Asystentki Stomatologiczne</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Higienistki Stomatologiczne</h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Nasz wykwalifikowany personel pomocniczy dba o to, by każda wizyta przebiegała sprawnie i komfortowo. Asystentki są zawsze gotowe pomóc zarówno lekarzowi jak i pacjentowi.
+                Nasz wykwalifikowany personel higienistyczny dba o to, by każda wizyta przebiegała sprawnie i komfortowo. Higienistki są zawsze gotowe pomóc zarówno lekarzowi jak i pacjentowi.
               </p>
               <a
                 href="https://rodentica.pl/o-nas/nasz-personel/asystentki-stomatologiczne/certyfikaty-asystentek/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline font-medium cursor-pointer"
-                aria-label="Certyfikaty asystentek"
+                aria-label="Certyfikaty higienistek"
               >
                 <Award size={15} aria-hidden="true" />
-                Zobacz certyfikaty asystentek
+                Zobacz certyfikaty higienistek
               </a>
             </SectionReveal>
             <SectionReveal delay={0.15} direction="left">
