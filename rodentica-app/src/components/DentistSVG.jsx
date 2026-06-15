@@ -33,11 +33,7 @@ export default function DentistSVG() {
     rotRef.current.rx = lerp(rotRef.current.rx, targetRx, 0.05)
 
     const { rx, ry } = rotRef.current
-    // SVG rotate(angle, cx, cy) keeps (cx,cy) fixed — head stays in place
-    headGroupRef.current.setAttribute(
-      'transform',
-      `rotate(${ry}, 150, 118) translate(0, ${rx * 1.2})`
-    )
+    headGroupRef.current.style.transform = `rotateY(${ry}deg) rotateX(${-rx}deg)`
 
     rafRef.current = requestAnimationFrame(updateHead)
   }, [])
@@ -57,6 +53,7 @@ export default function DentistSVG() {
       className="relative flex items-center justify-center select-none"
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      style={{ perspective: '800px' }}
     >
       {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
@@ -157,7 +154,7 @@ export default function DentistSVG() {
         <rect x="127" y="192" width="46" height="38" rx="12" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" />
 
         {/* ===== HEAD GROUP (animated via JS) ===== */}
-        <g ref={headGroupRef}>
+        <g ref={headGroupRef} style={{ transformBox: 'fill-box', transformOrigin: '50% 50%' }}>
           {/* Head shape – slightly oval, more feminine */}
           <ellipse cx="150" cy="118" rx="60" ry="68" fill="url(#dSkin)" stroke="#E2BFA0" strokeWidth="1.5" filter="url(#dFaceShadow)" />
 
