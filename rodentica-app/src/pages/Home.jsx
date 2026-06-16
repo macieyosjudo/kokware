@@ -41,9 +41,17 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-12 items-center">
+          <div className="grid grid-cols-2 lg:grid-cols-2 gap-2 sm:gap-12 items-center">
+            {/* Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
+              className="order-1 flex items-center justify-center scale-50 sm:scale-75 lg:scale-100 origin-center"
+            >
+              <DentistSVG />
+            </motion.div>
+
             {/* Text */}
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
                 className="hidden sm:inline-flex items-center gap-2 bg-brand-50 border border-brand-100 text-brand-600 rounded-full px-4 py-1.5 text-sm font-medium mb-6"
@@ -98,13 +106,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Visual */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
-              className="order-1 lg:order-2 flex items-center justify-center scale-75 sm:scale-100 origin-center"
-            >
-              <DentistSVG />
-            </motion.div>
           </div>
 
           {/* Scroll indicator */}
@@ -130,20 +131,20 @@ export default function Home() {
             <p className="text-gray-500 text-lg max-w-lg mx-auto">Pełny zakres usług stomatologicznych dla całej rodziny</p>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {services.map(({ Icon, title, href, color, desc }, i) => (
               <SectionReveal key={title} delay={(i % 3) * 0.1}>
                 <Link
                   to={href}
-                  className="group block bg-white border border-gray-100 rounded-2xl p-7 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-500/10 hover:border-brand-200 transition-all duration-300 cursor-pointer h-full"
+                  className="group block bg-white border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-7 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-500/10 hover:border-brand-200 transition-all duration-300 cursor-pointer h-full"
                   aria-label={`Dowiedz się więcej o usłudze: ${title}`}
                 >
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon size={26} color="white" strokeWidth={1.8} aria-hidden="true" />
+                  <div className={`w-10 sm:w-14 h-10 sm:h-14 rounded-lg sm:rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-2 sm:mb-5 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon size={20} className="sm:w-[26px] sm:h-[26px]" color="white" strokeWidth={1.8} aria-hidden="true" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
-                  <span className="text-brand-500 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2 leading-tight sm:leading-normal">{title}</h3>
+                  <p className="hidden sm:block text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+                  <span className="hidden sm:flex text-brand-500 text-sm font-semibold items-center gap-1 group-hover:gap-2 transition-all">
                     Dowiedz się więcej <ArrowRight size={14} aria-hidden="true" />
                   </span>
                 </Link>
