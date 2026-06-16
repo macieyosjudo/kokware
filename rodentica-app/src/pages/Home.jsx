@@ -40,7 +40,7 @@ export default function Home() {
           <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-cyan-400/6 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-20 w-full">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 sm:py-20 w-full">
           <div className="grid grid-cols-2 lg:grid-cols-2 gap-2 sm:gap-12 items-center">
             {/* Text */}
             <div className="order-1 lg:order-1">
