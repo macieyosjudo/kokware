@@ -94,8 +94,8 @@ export default function DentistSVG() {
       <svg
         ref={svgRef}
         viewBox="0 0 300 560"
-        width="300"
-        height="560"
+        width="100%"
+        height="auto"
         xmlns="http://www.w3.org/2000/svg"
         aria-label="Animowana higienistka stomatologiczna"
         role="img"
