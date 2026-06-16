@@ -101,7 +101,8 @@ export default function Home() {
             {/* Visual */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
-              className="order-2 lg:order-2 flex items-center justify-center scale-30 sm:scale-75 lg:scale-100 origin-center"
+              className="order-2 lg:order-2 flex items-center justify-center sm:scale-75 lg:scale-100"
+              style={{ transform: 'scale(0.25)' }}
             >
               <DentistSVG />
             </motion.div>
