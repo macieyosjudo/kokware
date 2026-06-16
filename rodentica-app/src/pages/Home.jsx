@@ -45,13 +45,13 @@ export default function Home() {
             {/* Visual */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
-              className="order-1 flex items-center justify-center scale-50 sm:scale-75 lg:scale-100 origin-center"
+              className="order-1 lg:order-2 flex items-center justify-center scale-50 sm:scale-75 lg:scale-100 origin-center"
             >
               <DentistSVG />
             </motion.div>
 
             {/* Text */}
-            <div className="order-2 lg:order-2">
+            <div className="order-2 lg:order-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
                 className="hidden sm:inline-flex items-center gap-2 bg-brand-50 border border-brand-100 text-brand-600 rounded-full px-4 py-1.5 text-sm font-medium mb-6"
