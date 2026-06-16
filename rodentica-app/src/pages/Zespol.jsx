@@ -256,19 +256,19 @@ export default function Zespol() {
             </p>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
             {doctors.map(({ name, role, specializations, desc, certs, hasPhoto }, i) => (
               <SectionReveal key={name} delay={i * 0.1}>
                 <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-brand-500/8 hover:-translate-y-1 transition-all duration-300 h-full">
-                  {hasPhoto && <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-[3/4]" className="rounded-none" />}
-                  <div className="p-6">
-                    <h3 className="font-bold text-gray-900 text-lg mb-1">{name}</h3>
-                    <p className="text-brand-600 text-sm font-medium mb-3">{role}</p>
-                    {desc && <p className="text-gray-600 text-sm leading-relaxed mb-4">{desc}</p>}
+                  {hasPhoto && <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-square md:aspect-[3/4]" className="rounded-none" />}
+                  <div className="p-3 md:p-6">
+                    <h3 className="font-bold text-gray-900 text-sm md:text-lg mb-1 leading-tight">{name}</h3>
+                    <p className="text-brand-600 text-xs md:text-sm font-medium mb-2 md:mb-3">{role}</p>
+                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4 hidden md:block">{desc}</p>}
                     {specializations.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-5">
+                      <div className="flex flex-wrap gap-1 md:gap-1.5 mb-3 md:mb-5">
                         {specializations.map(s => (
-                          <span key={s} className="text-xs bg-brand-50 text-brand-600 px-2.5 py-1 rounded-full font-medium">{s}</span>
+                          <span key={s} className="text-xs bg-brand-50 text-brand-600 px-2 py-0.5 md:px-2.5 md:py-1 rounded-full font-medium leading-tight">{s}</span>
                         ))}
                       </div>
                     )}
@@ -298,15 +298,15 @@ export default function Zespol() {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Higienistki Stomatologiczne</h2>
             <p className="text-gray-500 text-lg max-w-lg mx-auto">Wykwalifikowany personel higienistyczny dbający o Twój komfort i bezpieczeństwo.</p>
           </SectionReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
             {hygienists.map(({ name, role, desc, certs }, i) => (
               <SectionReveal key={name} delay={i * 0.1}>
                 <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-brand-500/8 hover:-translate-y-1 transition-all duration-300 h-full">
                   <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-square" className="rounded-none" />
-                  <div className="p-5">
-                    <h3 className="font-bold text-gray-900 text-base mb-1">{name}</h3>
-                    <p className="text-brand-600 text-xs font-medium mb-3">{role}</p>
-                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-4">{desc}</p>}
+                  <div className="p-3 md:p-5">
+                    <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1 leading-tight">{name}</h3>
+                    <p className="text-brand-600 text-xs font-medium mb-2 md:mb-3">{role}</p>
+                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4 hidden md:block">{desc}</p>}
                     {certs && certs.length > 0 && (
                       <button
                         onClick={() => setActivePerson({ name, certs })}
