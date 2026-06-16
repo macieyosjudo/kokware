@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, MessageSquare } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, MessageSquare, ImagePlus, X } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import SectionReveal from '../components/SectionReveal'
 
@@ -52,7 +52,23 @@ export default function Kontakt() {
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [photo, setPhoto] = useState(null)
+  const [photoPreview, setPhotoPreview] = useState(null)
+  const fileInputRef = useRef(null)
   const open = isOpenNow()
+
+  const handlePhoto = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    setPhoto(file)
+    setPhotoPreview(URL.createObjectURL(file))
+  }
+
+  const removePhoto = () => {
+    setPhoto(null)
+    setPhotoPreview(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -68,6 +84,7 @@ export default function Kontakt() {
     await new Promise(r => setTimeout(r, 1200))
     setLoading(false)
     setSubmitted(true)
+    removePhoto()
   }
 
   const inputClass = (name) => `w-full px-4 py-3 rounded-xl border text-sm bg-gray-50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent focus:bg-white transition-all ${errors[name] ? 'border-red-400 bg-red-50' : 'border-gray-200 hover:border-gray-300'}`
@@ -170,7 +187,7 @@ export default function Kontakt() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Wiadomość wysłana!</h3>
                     <p className="text-gray-500 max-w-xs">Odezwiemy się w ciągu 24 godzin. Możesz też zadzwonić: <strong>33 8 123 123</strong></p>
-                    <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }} className="mt-2 text-brand-500 font-semibold hover:underline cursor-pointer text-sm">
+                    <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }); removePhoto() }} className="mt-2 text-brand-500 font-semibold hover:underline cursor-pointer text-sm">
                       Wyślij kolejną wiadomość
                     </button>
                   </motion.div>
@@ -223,6 +240,30 @@ export default function Kontakt() {
                           placeholder="Opisz krótko czego potrzebujesz lub kiedy chcesz umówić wizytę..."
                           className={`${inputClass('message')} resize-none`} />
                       </Field>
+
+                      {/* Photo upload */}
+                      <div>
+                        <p className="block text-sm font-medium text-gray-700 mb-1.5">Zdjęcie <span className="text-gray-400 font-normal">(opcjonalnie)</span></p>
+                        {photoPreview ? (
+                          <div className="relative inline-block">
+                            <img src={photoPreview} alt="Podgląd zdjęcia" className="w-24 h-24 object-cover rounded-xl border border-gray-200" />
+                            <button type="button" onClick={removePhoto}
+                              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer"
+                              aria-label="Usuń zdjęcie">
+                              <X size={12} />
+                            </button>
+                            <p className="text-xs text-gray-500 mt-1.5 max-w-[6rem] truncate">{photo?.name}</p>
+                          </div>
+                        ) : (
+                          <button type="button" onClick={() => fileInputRef.current?.click()}
+                            className="flex items-center gap-2 px-4 py-3 w-full rounded-xl border-2 border-dashed border-gray-200 text-sm text-gray-400 hover:border-brand-400 hover:text-brand-500 hover:bg-brand-50 transition-all cursor-pointer"
+                            aria-label="Dodaj zdjęcie">
+                            <ImagePlus size={18} aria-hidden="true" />
+                            Kliknij aby dodać zdjęcie (JPG, PNG, WEBP, maks. 10 MB)
+                          </button>
+                        )}
+                        <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={handlePhoto} className="hidden" aria-label="Wybierz zdjęcie" />
+                      </div>
 
                       <button type="submit" disabled={loading}
                         className="w-full flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 disabled:bg-brand-300 text-white font-semibold py-3.5 rounded-xl transition-all duration-200 shadow-md hover:shadow-brand-500/30 hover:-translate-y-0.5 cursor-pointer disabled:cursor-not-allowed disabled:transform-none"
