@@ -264,7 +264,7 @@ export default function Zespol() {
                   <div className="p-3 md:p-6">
                     <h3 className="font-bold text-gray-900 text-sm md:text-lg mb-1 leading-tight">{name}</h3>
                     <p className="text-brand-600 text-xs md:text-sm font-medium mb-2 md:mb-3">{role}</p>
-                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4 hidden md:block">{desc}</p>}
+                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4">{desc}</p>}
                     {specializations.length > 0 && (
                       <div className="flex flex-wrap gap-1 md:gap-1.5 mb-3 md:mb-5">
                         {specializations.map(s => (
@@ -306,7 +306,7 @@ export default function Zespol() {
                   <div className="p-3 md:p-5">
                     <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1 leading-tight">{name}</h3>
                     <p className="text-brand-600 text-xs font-medium mb-2 md:mb-3">{role}</p>
-                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4 hidden md:block">{desc}</p>}
+                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-3 md:mb-4">{desc}</p>}
                     {certs && certs.length > 0 && (
                       <button
                         onClick={() => setActivePerson({ name, certs })}
