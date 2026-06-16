@@ -41,12 +41,12 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-12 items-center">
             {/* Text */}
             <div className="order-2 lg:order-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 bg-brand-50 border border-brand-100 text-brand-600 rounded-full px-4 py-1.5 text-sm font-medium mb-6"
+                className="hidden sm:inline-flex items-center gap-2 bg-brand-50 border border-brand-100 text-brand-600 rounded-full px-4 py-1.5 text-sm font-medium mb-6"
               >
                 <span className="w-2 h-2 bg-brand-500 rounded-full animate-pulse" aria-hidden="true" />
                 Nowoczesna stomatologia · Bielsko-Biała
@@ -54,7 +54,7 @@ export default function Home() {
 
               <motion.h1
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-6"
+                className="text-2xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-3 sm:mb-6"
               >
                 Uśmiech godny{' '}
                 <span className="text-gradient">prezentacji</span>
@@ -62,7 +62,7 @@ export default function Home() {
 
               <motion.p
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl"
+                className="hidden sm:block text-lg text-gray-600 leading-relaxed mb-8 max-w-xl"
               >
                 Jedna z najnowocześniejszych klinik stomatologicznych w Bielsku-Białej.
                 Bezbolesne zabiegi, najnowsza technologia i zespół wybitnych specjalistów
@@ -71,13 +71,13 @@ export default function Home() {
 
               <motion.div
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-wrap gap-3 mb-12"
+                className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-12"
               >
-                <Link to="/kontakt" className="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-6 py-3.5 rounded-xl font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-1 transition-all duration-200 cursor-pointer">
-                  <CalendarCheck size={18} aria-hidden="true" />
+                <Link to="/kontakt" className="flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-1 transition-all duration-200 cursor-pointer text-sm sm:text-base">
+                  <CalendarCheck size={16} aria-hidden="true" />
                   Umów wizytę
                 </Link>
-                <a href="tel:+48338123123" className="flex items-center gap-2 bg-white text-brand-600 border-2 border-brand-200 px-6 py-3.5 rounded-xl font-semibold hover:bg-brand-50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-sm" aria-label="Zadzwoń: 33 8 123 123">
+                <a href="tel:+48338123123" className="flex items-center justify-center gap-2 bg-white text-brand-600 border-2 border-brand-200 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl font-semibold hover:bg-brand-50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base" aria-label="Zadzwoń: 33 8 123 123">
                   <Phone size={18} aria-hidden="true" />
                   33 8 123 123
                 </a>
@@ -86,12 +86,12 @@ export default function Home() {
               {/* Stats */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-6"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6"
                 role="list" aria-label="Statystyki kliniki"
               >
                 {stats.map(({ value, label }) => (
                   <div key={label} role="listitem" className="text-center sm:text-left">
-                    <div className="text-2xl font-bold text-gradient">{value}</div>
+                    <div className="text-lg sm:text-2xl font-bold text-gradient">{value}</div>
                     <div className="text-xs text-gray-500 mt-0.5">{label}</div>
                   </div>
                 ))}
@@ -101,7 +101,7 @@ export default function Home() {
             {/* Visual */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
-              className="order-1 lg:order-2 flex items-center justify-center"
+              className="order-1 lg:order-2 flex items-center justify-center scale-75 sm:scale-100 origin-center"
             >
               <DentistSVG />
             </motion.div>
