@@ -103,7 +103,7 @@ export default function Home() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
               className="order-2 lg:order-2 flex items-center justify-center"
             >
-              <div className="w-20 sm:w-48 lg:w-[300px]">
+              <div className="w-36 sm:w-48 lg:w-[300px]">
                 <DentistSVG />
               </div>
             </motion.div>
