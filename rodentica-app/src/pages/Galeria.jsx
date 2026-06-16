@@ -1,32 +1,39 @@
-import { Images } from 'lucide-react'
+import { useState } from 'react'
+import { Images, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import SectionReveal from '../components/SectionReveal'
 import CtaSection from '../components/CtaSection'
 
-const categories = [
-  { label: 'Gabinety i recepcja', count: 5 },
-  { label: 'Zespół', count: 4 },
-  { label: 'Sprzęt i technologia', count: 5 },
-]
-
-const placeholders = [
-  { label: 'Gabinet 1 – widok ogólny', cat: 'Gabinety i recepcja', aspect: 'aspect-video' },
-  { label: 'Gabinet 2 – fotel stomatologiczny', cat: 'Gabinety i recepcja', aspect: 'aspect-video' },
-  { label: 'Gabinet 3 – wyposażenie', cat: 'Gabinety i recepcja', aspect: 'aspect-video' },
-  { label: 'Recepcja – wejście', cat: 'Gabinety i recepcja', aspect: 'aspect-[4/3]' },
-  { label: 'Poczekalnia', cat: 'Gabinety i recepcja', aspect: 'aspect-[4/3]' },
-  { label: 'Zespół lekarski', cat: 'Zespół', aspect: 'aspect-[4/3]' },
-  { label: 'Agnieszka Romanowska-Szymala', cat: 'Zespół', aspect: 'aspect-[3/4]' },
-  { label: 'Krzysztof Kuś', cat: 'Zespół', aspect: 'aspect-[3/4]' },
-  { label: 'Maciej Nowiński', cat: 'Zespół', aspect: 'aspect-[3/4]' },
-  { label: 'Higienistki stomatologiczne', cat: 'Zespół', aspect: 'aspect-[4/3]' },
-  { label: 'The WAND – znieczulenie komputerowe', cat: 'Sprzęt i technologia', aspect: 'aspect-[4/3]' },
-  { label: 'Mikroskop operacyjny', cat: 'Sprzęt i technologia', aspect: 'aspect-[4/3]' },
-  { label: 'Pracownia RTG', cat: 'Sprzęt i technologia', aspect: 'aspect-[4/3]' },
-  { label: 'Sterylizacja i dezynfekcja', cat: 'Sprzęt i technologia', aspect: 'aspect-[4/3]' },
+const photos = [
+  { src: '/galeria/galeria-1-150x150.jpg', label: 'Klinika – widok ogólny' },
+  { src: '/galeria/galeria-2-150x150.jpg', label: 'Klinika – wnętrze' },
+  { src: '/galeria/galeria-4-150x150.jpg', label: 'Klinika – wnętrze 2' },
+  { src: '/galeria/galeria-5-150x150.jpg', label: 'Klinika – wnętrze 3' },
+  { src: '/galeria/galeria-6-150x150.jpg', label: 'Klinika – wnętrze 4' },
+  { src: '/galeria/gabinet04-150x150.jpg', label: 'Gabinet 1' },
+  { src: '/galeria/gabinet06-150x150.jpg', label: 'Gabinet 2' },
+  { src: '/galeria/recepcja01-150x150.jpg', label: 'Recepcja' },
+  { src: '/galeria/klinika1-150x150.png', label: 'Klinika Rodentica' },
+  { src: '/galeria/asystentki_1-150x150.jpg', label: 'Asystentki' },
+  { src: '/galeria/specjaliści-150x150.jpg', label: 'Specjaliści' },
+  { src: '/galeria/IMG_7477-150x150.jpg', label: 'Klinika' },
+  { src: '/galeria/tn_IMG_1359-150x150.jpg', label: 'Klinika – zdjęcie' },
+  { src: '/galeria/tn_IMG_1369-150x150.jpg', label: 'Klinika – zdjęcie 2' },
 ]
 
 export default function Galeria() {
+  const [lightbox, setLightbox] = useState(null)
+
+  const prev = () => setLightbox(i => (i - 1 + photos.length) % photos.length)
+  const next = () => setLightbox(i => (i + 1) % photos.length)
+
+  const onKey = (e) => {
+    if (e.key === 'Escape') setLightbox(null)
+    if (e.key === 'ArrowLeft') prev()
+    if (e.key === 'ArrowRight') next()
+  }
+
   return (
     <div>
       <PageHero
@@ -38,50 +45,68 @@ export default function Galeria() {
 
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white" aria-label="Galeria kliniki">
         <div className="max-w-6xl mx-auto">
-
-          {/* Info banner */}
-          <SectionReveal className="mb-12">
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-4">
-              <Images size={22} className="text-amber-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-              <p className="text-amber-800 text-sm leading-relaxed">
-                Zdjęcia kliniki zostaną wkrótce dodane. Poniżej widoczne są zarezerwowane miejsca na fotografie – każde z nich zostanie uzupełnione profesjonalnymi zdjęciami kliniki.
-              </p>
-            </div>
-          </SectionReveal>
-
-          {/* Grid masonry-like */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {placeholders.map(({ label, aspect }, i) => (
-              <SectionReveal key={i} delay={(i % 3) * 0.08} direction="scale">
-                <div className={`${aspect} group relative bg-gradient-to-br from-brand-50 to-blue-50 rounded-2xl border-2 border-dashed border-brand-200 hover:border-brand-400 hover:shadow-xl hover:shadow-brand-500/10 transition-all duration-300 overflow-hidden flex flex-col items-center justify-center gap-3 cursor-default`}>
-                  {/* Number badge */}
-                  <div className="absolute top-3 left-3 w-7 h-7 bg-white rounded-full border border-brand-200 flex items-center justify-center">
-                    <span className="text-xs font-bold text-brand-400">{i + 1}</span>
-                  </div>
-
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-2xl bg-white border border-brand-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                    <Images size={24} className="text-brand-300 group-hover:text-brand-500 transition-colors" aria-hidden="true" />
-                  </div>
-
-                  {/* Label */}
-                  <p className="text-xs font-medium text-brand-400 text-center px-4 leading-snug group-hover:text-brand-600 transition-colors">
-                    {label}
-                  </p>
-                </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {photos.map(({ src, label }, i) => (
+              <SectionReveal key={i} delay={(i % 4) * 0.06} direction="scale">
+                <button
+                  onClick={() => setLightbox(i)}
+                  className="group w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  aria-label={label}
+                >
+                  <img
+                    src={src}
+                    alt={label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </button>
               </SectionReveal>
             ))}
           </div>
-
-          <SectionReveal className="text-center mt-12">
-            <p className="text-gray-400 text-sm">
-              Łącznie <strong className="text-gray-600">{placeholders.length} zdjęć</strong> zostanie dodanych do galerii.
-            </p>
-          </SectionReveal>
         </div>
       </section>
 
       <CtaSection title="Chcesz odwiedzić naszą klinikę?" subtitle="Zapraszamy do Bielska-Białej. Umów wizytę i przekonaj się sam o naszej atmosferze." />
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+            onClick={() => setLightbox(null)}
+            onKeyDown={onKey}
+            tabIndex={-1}
+          >
+            <button onClick={(e) => { e.stopPropagation(); prev() }} className="absolute left-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors cursor-pointer" aria-label="Poprzednie">
+              <ChevronLeft size={22} />
+            </button>
+
+            <motion.img
+              key={lightbox}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              src={photos[lightbox].src}
+              alt={photos[lightbox].label}
+              className="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            <button onClick={(e) => { e.stopPropagation(); next() }} className="absolute right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors cursor-pointer" aria-label="Następne">
+              <ChevronRight size={22} />
+            </button>
+
+            <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors cursor-pointer" aria-label="Zamknij">
+              <X size={16} />
+            </button>
+
+            <p className="absolute bottom-4 text-white/50 text-sm">{lightbox + 1} / {photos.length}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
