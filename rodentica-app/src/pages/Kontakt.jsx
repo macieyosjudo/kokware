@@ -52,6 +52,8 @@ export default function Kontakt() {
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [consent, setConsent] = useState(false)
+  const [consentError, setConsentError] = useState(false)
   const [photo, setPhoto] = useState(null)
   const [photoPreview, setPhotoPreview] = useState(null)
   const fileInputRef = useRef(null)
@@ -79,7 +81,8 @@ export default function Kontakt() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate(form)
-    if (Object.keys(errs).length) { setErrors(errs); return }
+    if (!consent) setConsentError(true)
+    if (Object.keys(errs).length || !consent) { setErrors(errs); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 1200))
     setLoading(false)
@@ -241,6 +244,28 @@ export default function Kontakt() {
                           className={`${inputClass('message')} resize-none`} />
                       </Field>
 
+                      {/* GDPR consent */}
+                      <div>
+                        <label className={`flex gap-3 cursor-pointer group ${consentError ? 'text-red-500' : 'text-gray-600'}`}>
+                          <input
+                            type="checkbox"
+                            checked={consent}
+                            onChange={(e) => { setConsent(e.target.checked); if (e.target.checked) setConsentError(false) }}
+                            className="mt-0.5 w-4 h-4 flex-shrink-0 accent-brand-500 cursor-pointer"
+                            aria-required="true"
+                            aria-invalid={consentError}
+                          />
+                          <span className="text-xs leading-relaxed">
+                            Wyrażam zgodę na przetwarzanie przez Rodentica Stomatologia Estetyczna, z siedzibą w Bielsku-Białej, przy ul. Cieszyńskiej 179 („Administrator Danych") moich danych osobowych oraz adresu e-mail przekazanych w formularzu zgłoszeniowym oraz w trakcie korzystania ze strony rodentica.pl („Serwis") w zbiorze danych Administratora Danych oraz zgodnie z Ustawą z dnia 29 sierpnia 1997 r. o ochronie danych osobowych (tekst jednolity Dz. U. z 2002 r. Nr 101 poz. 926, ze zmianami) oraz Ustawą z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (Dz. U. z 2002 r. Nr 144, poz. 1204, ze zmianami) w celu prawidłowego świadczenia usług, jak również w celach operacyjnych i statystycznych związanych z prowadzeniem Serwisu. Oświadczam, że zostałem/am poinformowany/a o prawie dostępu do treści moich danych oraz ich poprawiania i że wszelkie dane osobowe zostały przekazane przez mnie dobrowolnie. Wyrażam zgodę na otrzymywanie informacji z RODENTICA drogą elektroniczną, na mój adres email oraz przetwarzanie tego adresu w bazie danych na zasadach określonych w przepisach Ustawy z dnia 26.08.2002 r. (Dz. U. nr 144, poz. 1204) o świadczeniu usług drogą elektroniczną. <span className="text-red-400" aria-hidden="true">*</span>
+                          </span>
+                        </label>
+                        {consentError && (
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle size={11} aria-hidden="true" /> Wyrażenie zgody jest wymagane do wysłania formularza.
+                          </p>
+                        )}
+                      </div>
+
                       {/* Photo upload */}
                       <div>
                         <p className="block text-sm font-medium text-gray-700 mb-1.5">Zdjęcie <span className="text-gray-400 font-normal">(opcjonalnie)</span></p>
@@ -276,7 +301,7 @@ export default function Kontakt() {
                         )}
                       </button>
 
-                      <p className="text-xs text-gray-400 text-center">Odpowiadamy w ciągu 24 godzin w dni robocze.</p>
+                      <p className="text-xs text-gray-400 text-center">Informacja: W celu wysłania formularza wymagane jest wypełnienie wszystkich pól oznaczonych gwiazdką (<span className="text-red-400">*</span>) i wyrażenie zgody na przetwarzanie danych osobowych. Odpowiadamy w ciągu 24 godzin w dni robocze.</p>
                     </div>
                   </form>
                 )}
