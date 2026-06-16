@@ -54,24 +54,79 @@ const higienistkiCerts = [
 const doctors = [
   {
     name: 'Agnieszka Romanowska-Szymala',
-    role: 'Lekarz Stomatolog – Założycielka',
-    specializations: ['Stomatologia Estetyczna', 'Protetyka', 'Implantologia'],
-    desc: 'Założycielka i kierownik kliniki Rodentica. Specjalizuje się w stomatologii estetycznej i protetyce. Pasjonatka pięknych uśmiechów i nowoczesnych metod leczenia.',
+    role: 'Lekarz Stomatolog – Właścicielka',
+    specializations: ['Stomatologia Estetyczna', 'Protetyka', 'Implantoprotetyka'],
+    desc: 'Właścicielka kliniki Rodentica. Absolwentka AM we Wrocławiu. Główny konsultant protetyczny i implantoprotetyczny. Specjalizuje się w koronach ceramicznych, licówkach i odbudowie uśmiechu.',
     certs: agnieszka,
   },
   {
     name: 'Krzysztof Kuś',
-    role: 'Lekarz Stomatolog – Specjalista',
-    specializations: ['Implantologia', 'Chirurgia Stomatologiczna', 'Endodoncja'],
-    desc: 'Specjalista w dziedzinie implantologii i chirurgii stomatologicznej. Wykonuje zabiegi wszczepienia implantów Biomet 3i oraz zabiegi chirurgiczne pod mikroskopem operacyjnym.',
+    role: 'Lekarz Stomatolog – Specjalista Chirurgii',
+    specializations: ['Implantologia', 'Chirurgia Stomatologiczna', 'Periodontologia'],
+    desc: 'Absolwent WAM w Łodzi. Specjalista chirurgii stomatologicznej i implantologii. Specjalizuje się w chirurgii periodontologicznej i sterowanej regeneracji kości.',
     certs: krzysztof,
   },
   {
     name: 'Maciej Nowiński',
-    role: 'Lekarz Stomatolog – Specjalista',
-    specializations: ['Ortodoncja', 'Stomatologia Dziecięca', 'Leczenie Zachowawcze'],
-    desc: 'Specjalista ortodoncji i stomatologii dziecięcej. Prowadzi leczenie aparatami stałymi, ruchomymi oraz niewidoczymi alignerami Clear Liner. Uwielbia pracę z dziećmi.',
+    role: 'Lekarz Stomatolog – Chirurg Szczękowo-Twarzowy',
+    specializations: ['Chirurgia Szczękowo-Twarzowa', 'Implantologia', 'Protetyka'],
+    desc: 'Specjalista chirurgii szczękowo-twarzowej, asystent w Klinice Chirurgii ŚUM. Certyfikowany implantolog Biomet 3i i Keystone Dental. Autor publikacji naukowych z dziedziny chirurgii.',
     certs: maciej,
+  },
+  {
+    name: 'Magdalena Soczka-Bojda',
+    role: 'Lekarz Stomatolog',
+    specializations: ['Endodoncja Mikroskopowa', 'Stomatologia Zachowawcza'],
+    desc: 'Absolwentka AM w Poznaniu (2006). Specjalizuje się w zaawansowanej endodoncji mikroskopowej i stomatologii zachowawczej. Regularnie podnosi kwalifikacje na szkoleniach i warsztatach.',
+    certs: null,
+  },
+  {
+    name: 'Karolina Bernacka',
+    role: 'Lekarz Stomatolog',
+    specializations: [],
+    desc: null,
+    certs: null,
+  },
+  {
+    name: 'Dominika Bartoszek-Boba',
+    role: 'Lekarz Stomatolog',
+    specializations: [],
+    desc: null,
+    certs: null,
+  },
+  {
+    name: 'Flora Menzel',
+    role: 'Lekarz Stomatolog',
+    specializations: [],
+    desc: null,
+    certs: null,
+  },
+]
+
+const hygienists = [
+  {
+    name: 'Zuzanna Smoter',
+    role: 'Higienistka Stomatologiczna',
+    desc: 'Dyplomowana pielęgniarka i higienistka z 15-letnim doświadczeniem, z kliniką od początku jej powstania. Szefowa zespołu asystentek i higienistek. Wykonuje piaskowanie, skaling, fluoryzację oraz asystuje przy zabiegach implantologicznych i chirurgicznych.',
+    certs: higienistkiCerts.filter(s => s.includes('zuzia')),
+  },
+  {
+    name: 'Anita Mędrek',
+    role: 'Higienistka Stomatologiczna',
+    desc: 'Dyplomowana higienistka (TEB Edukacja). Prowadzi instruktaże higieny jamy ustnej u dzieci i dorosłych. Samodzielnie wykonuje skaling, piaskowanie i fluoryzację.',
+    certs: higienistkiCerts.filter(s => s.includes('Anita')),
+  },
+  {
+    name: 'Ewelina Adamczuk',
+    role: 'Higienistka Stomatologiczna',
+    desc: 'Dyplomowana higienistka stomatologiczna z kursami z zakresu higieny i bezpieczeństwa pracy. Samodzielnie wykonuje zabiegi higienizacyjne i profilaktyczne.',
+    certs: higienistkiCerts.filter(s => s.includes('Ewelina')),
+  },
+  {
+    name: 'Małgorzata',
+    role: 'Higienistka Stomatologiczna',
+    desc: null,
+    certs: higienistkiCerts.filter(s => s.includes('gosia')),
   },
 ]
 
@@ -209,20 +264,24 @@ export default function Zespol() {
                   <div className="p-6">
                     <h3 className="font-bold text-gray-900 text-lg mb-1">{name}</h3>
                     <p className="text-brand-600 text-sm font-medium mb-3">{role}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">{desc}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {specializations.map(s => (
-                        <span key={s} className="text-xs bg-brand-50 text-brand-600 px-2.5 py-1 rounded-full font-medium">{s}</span>
-                      ))}
-                    </div>
-                    <button
-                      onClick={() => setActivePerson({ name, certs })}
-                      className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-600 transition-colors cursor-pointer"
-                      aria-label={`Certyfikaty – ${name}`}
-                    >
-                      <Award size={13} aria-hidden="true" />
-                      Zobacz certyfikaty
-                    </button>
+                    {desc && <p className="text-gray-600 text-sm leading-relaxed mb-4">{desc}</p>}
+                    {specializations.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {specializations.map(s => (
+                          <span key={s} className="text-xs bg-brand-50 text-brand-600 px-2.5 py-1 rounded-full font-medium">{s}</span>
+                        ))}
+                      </div>
+                    )}
+                    {certs && (
+                      <button
+                        onClick={() => setActivePerson({ name, certs })}
+                        className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-600 transition-colors cursor-pointer mt-auto"
+                        aria-label={`Certyfikaty – ${name}`}
+                      >
+                        <Award size={13} aria-hidden="true" />
+                        Zobacz certyfikaty
+                      </button>
+                    )}
                   </div>
                 </div>
               </SectionReveal>
@@ -231,28 +290,37 @@ export default function Zespol() {
         </div>
       </section>
 
-      {/* Assistants */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50" aria-label="Higienistki stomatologiczne">
+      {/* Hygienists */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50" aria-label="Higienistki stomatologiczne">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <SectionReveal direction="right">
-              <span className="inline-block bg-brand-50 text-brand-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Personel</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Higienistki Stomatologiczne</h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Nasz wykwalifikowany personel higienistyczny dba o to, by każda wizyta przebiegała sprawnie i komfortowo. Higienistki są zawsze gotowe pomóc zarówno lekarzowi jak i pacjentowi.
-              </p>
-              <button
-                onClick={() => setActivePerson({ name: 'Higienistki Stomatologiczne', certs: higienistkiCerts })}
-                className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline font-medium cursor-pointer"
-                aria-label="Certyfikaty higienistek"
-              >
-                <Award size={15} aria-hidden="true" />
-                Zobacz certyfikaty higienistek
-              </button>
-            </SectionReveal>
-            <SectionReveal delay={0.15} direction="left">
-              <ImagePlaceholder label="Zdjęcie zespołu / asystentek" aspect="aspect-video" />
-            </SectionReveal>
+          <SectionReveal className="text-center mb-14">
+            <span className="inline-block bg-brand-50 text-brand-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Personel</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Higienistki Stomatologiczne</h2>
+            <p className="text-gray-500 text-lg max-w-lg mx-auto">Wykwalifikowany personel higienistyczny dbający o Twój komfort i bezpieczeństwo.</p>
+          </SectionReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {hygienists.map(({ name, role, desc, certs }, i) => (
+              <SectionReveal key={name} delay={i * 0.1}>
+                <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-brand-500/8 hover:-translate-y-1 transition-all duration-300 h-full">
+                  <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-square" className="rounded-none" />
+                  <div className="p-5">
+                    <h3 className="font-bold text-gray-900 text-base mb-1">{name}</h3>
+                    <p className="text-brand-600 text-xs font-medium mb-3">{role}</p>
+                    {desc && <p className="text-gray-600 text-xs leading-relaxed mb-4">{desc}</p>}
+                    {certs && certs.length > 0 && (
+                      <button
+                        onClick={() => setActivePerson({ name, certs })}
+                        className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-600 transition-colors cursor-pointer"
+                        aria-label={`Certyfikaty – ${name}`}
+                      >
+                        <Award size={13} aria-hidden="true" />
+                        Zobacz certyfikaty
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </SectionReveal>
+            ))}
           </div>
         </div>
       </section>
