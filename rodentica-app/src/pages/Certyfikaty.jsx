@@ -44,7 +44,6 @@ const maciej = [
 const higienistki = [
   { name: 'Anita', imgs: ['/Anita-1-001-150x150.jpg', '/Anita-2-001-150x150.jpg'] },
   { name: 'Ewelina', imgs: ['/Ewelina-1-001-150x150.jpg', '/Ewelina-2-001-150x150.jpg'] },
-  { name: 'Małgorzata', imgs: ['/gosia-1-001-150x150.jpg', '/gosia-2-001-150x150.jpg', '/gosia-3-001-150x150.jpg', '/gosia-4-001-150x150.jpg', '/gosia-5-001-150x150.jpg'] },
   { name: 'Zuzanna', imgs: ['/zuzia-2-001-150x150.jpg', '/zuzia-5-001-150x150.jpg', '/zuzia-6-001-150x150.jpg', '/zuzia-7-150x150.jpg', '/zuzia-8-001-150x150.jpg', '/zuzia-9-001-150x150.jpg'] },
 ]
 

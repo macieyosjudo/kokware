@@ -47,7 +47,6 @@ const maciej = [
 const higienistkiCerts = [
   '/Anita-1-001-150x150.jpg', '/Anita-2-001-150x150.jpg',
   '/Ewelina-1-001-150x150.jpg', '/Ewelina-2-001-150x150.jpg',
-  '/gosia-1-001-150x150.jpg', '/gosia-2-001-150x150.jpg', '/gosia-3-001-150x150.jpg', '/gosia-4-001-150x150.jpg', '/gosia-5-001-150x150.jpg',
   '/zuzia-2-001-150x150.jpg', '/zuzia-5-001-150x150.jpg', '/zuzia-6-001-150x150.jpg', '/zuzia-7-150x150.jpg', '/zuzia-8-001-150x150.jpg', '/zuzia-9-001-150x150.jpg',
 ]
 
@@ -58,6 +57,7 @@ const doctors = [
     specializations: ['Stomatologia Estetyczna', 'Protetyka', 'Implantoprotetyka'],
     desc: 'Właścicielka kliniki Rodentica. Absolwentka AM we Wrocławiu. Główny konsultant protetyczny i implantoprotetyczny. Specjalizuje się w koronach ceramicznych, licówkach i odbudowie uśmiechu.',
     certs: agnieszka,
+    hasPhoto: true,
   },
   {
     name: 'Krzysztof Kuś',
@@ -65,6 +65,7 @@ const doctors = [
     specializations: ['Implantologia', 'Chirurgia Stomatologiczna', 'Periodontologia'],
     desc: 'Absolwent WAM w Łodzi. Specjalista chirurgii stomatologicznej i implantologii. Specjalizuje się w chirurgii periodontologicznej i sterowanej regeneracji kości.',
     certs: krzysztof,
+    hasPhoto: true,
   },
   {
     name: 'Maciej Nowiński',
@@ -72,6 +73,7 @@ const doctors = [
     specializations: ['Chirurgia Szczękowo-Twarzowa', 'Implantologia', 'Protetyka'],
     desc: 'Specjalista chirurgii szczękowo-twarzowej, asystent w Klinice Chirurgii ŚUM. Certyfikowany implantolog Biomet 3i i Keystone Dental. Autor publikacji naukowych z dziedziny chirurgii.',
     certs: maciej,
+    hasPhoto: true,
   },
   {
     name: 'Magdalena Soczka-Bojda',
@@ -79,6 +81,7 @@ const doctors = [
     specializations: ['Endodoncja Mikroskopowa', 'Stomatologia Zachowawcza'],
     desc: 'Absolwentka AM w Poznaniu (2006). Specjalizuje się w zaawansowanej endodoncji mikroskopowej i stomatologii zachowawczej. Regularnie podnosi kwalifikacje na szkoleniach i warsztatach.',
     certs: null,
+    hasPhoto: false,
   },
   {
     name: 'Karolina Bernacka',
@@ -86,6 +89,7 @@ const doctors = [
     specializations: [],
     desc: null,
     certs: null,
+    hasPhoto: false,
   },
   {
     name: 'Dominika Bartoszek-Boba',
@@ -93,6 +97,7 @@ const doctors = [
     specializations: [],
     desc: null,
     certs: null,
+    hasPhoto: false,
   },
   {
     name: 'Flora Menzel',
@@ -100,6 +105,7 @@ const doctors = [
     specializations: [],
     desc: null,
     certs: null,
+    hasPhoto: false,
   },
 ]
 
@@ -121,12 +127,6 @@ const hygienists = [
     role: 'Higienistka Stomatologiczna',
     desc: 'Dyplomowana higienistka stomatologiczna z kursami z zakresu higieny i bezpieczeństwa pracy. Samodzielnie wykonuje zabiegi higienizacyjne i profilaktyczne.',
     certs: higienistkiCerts.filter(s => s.includes('Ewelina')),
-  },
-  {
-    name: 'Małgorzata',
-    role: 'Higienistka Stomatologiczna',
-    desc: null,
-    certs: higienistkiCerts.filter(s => s.includes('gosia')),
   },
 ]
 
@@ -257,10 +257,10 @@ export default function Zespol() {
           </SectionReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {doctors.map(({ name, role, specializations, desc, certs }, i) => (
+            {doctors.map(({ name, role, specializations, desc, certs, hasPhoto }, i) => (
               <SectionReveal key={name} delay={i * 0.1}>
                 <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-brand-500/8 hover:-translate-y-1 transition-all duration-300 h-full">
-                  <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-[3/4]" className="rounded-none" />
+                  {hasPhoto && <ImagePlaceholder label={`Zdjęcie – ${name}`} aspect="aspect-[3/4]" className="rounded-none" />}
                   <div className="p-6">
                     <h3 className="font-bold text-gray-900 text-lg mb-1">{name}</h3>
                     <p className="text-brand-600 text-sm font-medium mb-3">{role}</p>
