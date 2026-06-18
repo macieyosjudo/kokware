@@ -256,7 +256,7 @@ export default function Kontakt() {
                             aria-invalid={consentError}
                           />
                           <span className="text-xs leading-relaxed">
-                            Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, adres e-mail) przez Rodentica Stomatologia Estetyczna z siedzibą w Bielsku-Białej w celu obsługi przesłanego zapytania oraz przesyłania informacji handlowych i marketingowych drogą elektroniczną. Administratorem danych jest Rodentica Stomatologia Estetyczna. Wiem, że mogę wycofać tę zgodę w każdym momencie. Pełne informacje o moich prawach oraz przetwarzaniu danych znajdują się w Polityce Prywatności. <span className="text-red-400" aria-hidden="true">*</span>
+                            Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, adres e-mail) przez Rodentica Stomatologia Estetyczna z siedzibą w Bielsku-Białej w celu obsługi przesłanego zapytania oraz przesyłania informacji handlowych i marketingowych drogą elektroniczną. Administratorem danych jest Rodentica Stomatologia Estetyczna. Wiem, że mogę wycofać tę zgodę w każdym momencie. <span className="text-red-400" aria-hidden="true">*</span>
                           </span>
                         </label>
                         {consentError && (
