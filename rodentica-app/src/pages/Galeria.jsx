@@ -16,7 +16,7 @@ const photos = [
   { src: '/galeria/recepcja01-150x150.jpg', label: 'Recepcja' },
   { src: '/galeria/klinika1-150x150.png', label: 'Klinika Rodentica' },
   { src: '/galeria/asystentki_1-150x150.jpg', label: 'Asystentki' },
-  { src: '/galeria/specjalisci-150x150.jpg', label: 'Specjaliści' },
+  { src: '/galeria/zespol-150x150.jpg', label: 'Specjaliści' },
   { src: '/galeria/IMG_7477-150x150.jpg', label: 'Klinika' },
   { src: '/galeria/tn_IMG_1359-150x150.jpg', label: 'Klinika – zdjęcie' },
   { src: '/galeria/tn_IMG_1369-150x150.jpg', label: 'Klinika – zdjęcie 2' },
