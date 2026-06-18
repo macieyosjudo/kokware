@@ -18,7 +18,7 @@ const stats = [
   { value: '15+', label: 'Lat doświadczenia' },
   { value: '8 000+', label: 'Pacjentów' },
   { value: '10', label: 'Specjalizacji' },
-  { value: '3', label: 'Specjalistów' },
+  { value: '7', label: 'Specjalistów' },
 ]
 
 const reasons = [
