@@ -325,6 +325,29 @@ export default function Zespol() {
         </div>
       </section>
 
+      {/* Reception */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white" aria-label="Recepcja">
+        <div className="max-w-6xl mx-auto">
+          <SectionReveal className="text-center mb-14">
+            <span className="inline-block bg-brand-50 text-brand-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Recepcja</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Recepcja i Poczekalnia</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">Recepcja połączona jest z poczekalnią, gdzie można komfortowo spędzić czas przeglądając prasę, słuchając muzyki lub korzystając z Wi-Fi. Nasz personel zawsze służy pomocą.</p>
+          </SectionReveal>
+          <div className="max-w-sm mx-auto">
+            <SectionReveal>
+              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-brand-500/8 hover:-translate-y-1 transition-all duration-300">
+                <ImagePlaceholder label="Zdjęcie – Patrycja Lorańczyk" aspect="aspect-square" className="rounded-none" />
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 text-lg mb-1">Patrycja Lorańczyk</h3>
+                  <p className="text-brand-600 text-sm font-medium mb-3">Obsługa Recepcji</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">Absolwentka kursu dla Rejestratorek Medycznych oraz kursu Efektywna Recepcja w Gabinecie Stomatologicznym (TEB Edukacja). Odpowiedzialna za obsługę recepcji kliniki.</p>
+                </div>
+              </div>
+            </SectionReveal>
+          </div>
+        </div>
+      </section>
+
       <CtaSection />
 
       {activePerson && <CertModal person={activePerson} onClose={() => setActivePerson(null)} />}
