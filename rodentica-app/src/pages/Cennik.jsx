@@ -6,25 +6,21 @@ import { BadgeEuro, ArrowRight } from 'lucide-react'
 
 const categories = [
   {
-    title: 'Konsultacje i Diagnostyka',
+    title: 'Konsultacje',
     color: 'bg-gray-50 border-gray-200',
     headerColor: 'bg-gray-100',
     items: [
-      { label: 'Konsultacja stomatologiczna', price: 'od 50 zł' },
+      { label: 'Konsultacja', price: 'od 50 zł' },
       { label: 'Znieczulenie komputerowe The WAND', price: '35 zł' },
-      { label: 'Zdjęcie RTG (pantomograficzne)', price: 'od 80 zł' },
     ],
   },
   {
-    title: 'Profilaktyka i Higiena',
+    title: 'Profilaktyka (Scaling, Piaskowanie, Fluoryzacja)',
     color: 'bg-cyan-50 border-cyan-100',
     headerColor: 'bg-cyan-100',
     href: '/uslugi/profilaktyka',
     items: [
-      { label: 'Skaling (usuwanie kamienia)', price: 'od 150 zł' },
-      { label: 'Piaskowanie (usuwanie przebarwień)', price: 'od 150 zł' },
-      { label: 'Fluoryzacja', price: 'od 80 zł' },
-      { label: 'Higienizacja kompletna', price: 'od 300 zł' },
+      { label: 'Scaling, Piaskowanie, Fluoryzacja', price: 'od 100 zł' },
     ],
   },
   {
@@ -33,9 +29,7 @@ const categories = [
     headerColor: 'bg-red-100',
     href: '/uslugi/stomatologia-zachowawcza',
     items: [
-      { label: 'Leczenie próchnicy (wypełnienie)', price: 'od 180 zł' },
-      { label: 'Lakowanie bruzd', price: 'od 100 zł' },
-      { label: 'Leczenie nadwrażliwości', price: 'od 100 zł' },
+      { label: 'Stomatologia zachowawcza', price: 'od 180 zł' },
     ],
   },
   {
@@ -44,10 +38,10 @@ const categories = [
     headerColor: 'bg-amber-100',
     href: '/uslugi/stomatologia-estetyczna',
     items: [
+      { label: 'Stomatologia estetyczna', price: 'od 700 zł' },
       { label: 'Wybielanie nakładkowe', price: 'od 700 zł' },
       { label: 'Wybielanie na fotelu ZOOM', price: 'od 1 300 zł' },
       { label: 'Licówka porcelanowa', price: 'od 1 400 zł' },
-      { label: 'Estetyczna odbudowa', price: 'od 700 zł' },
     ],
   },
   {
@@ -56,9 +50,7 @@ const categories = [
     headerColor: 'bg-violet-100',
     href: '/uslugi/ortodoncja',
     items: [
-      { label: 'Clear Liner (niewidoczny aligner)', price: 'od 900 zł' },
-      { label: 'Aparat stały standardowy', price: 'od 2 500 zł' },
-      { label: 'Aparat stały estetyczny', price: 'od 3 500 zł' },
+      { label: 'Niewidoczny aparat Clear Liner', price: 'od 900 zł' },
     ],
   },
   {
@@ -67,32 +59,29 @@ const categories = [
     headerColor: 'bg-brand-100',
     href: '/uslugi/implantologia',
     items: [
-      { label: 'Implant Biomet 3i', price: 'od 5 000 zł' },
-      { label: 'Korona na implancie', price: 'od 1 400 zł' },
+      { label: 'Implantologia', price: 'od 5 000 zł' },
     ],
   },
   {
-    title: 'Protetyka',
-    color: 'bg-indigo-50 border-indigo-100',
-    headerColor: 'bg-indigo-100',
-    href: '/uslugi/protetyka',
-    items: [
-      { label: 'Korona metaloceramiczna', price: 'od 750 zł' },
-      { label: 'Korona porcelanowa (cyrkon)', price: 'od 1 400 zł' },
-      { label: 'Proteza akrylowa', price: 'od 1 200 zł' },
-      { label: 'Naprawa protezy (ekspresowa)', price: 'od 120 zł' },
-      { label: 'Licówka kompozytowa', price: 'od 400 zł' },
-    ],
-  },
-  {
-    title: 'Leczenie Kanałowe',
+    title: 'Endodoncja',
     color: 'bg-emerald-50 border-emerald-100',
     headerColor: 'bg-emerald-100',
     href: '/uslugi/leczenie-kanalowe',
     items: [
-      { label: 'Leczenie kanałowe 1-kanałowe', price: 'od 400 zł' },
-      { label: 'Leczenie kanałowe 2-kanałowe', price: 'od 550 zł' },
-      { label: 'Leczenie kanałowe 3-kanałowe', price: 'od 700 zł' },
+      { label: 'Endodoncja', price: 'od 400 zł' },
+    ],
+  },
+  {
+    title: 'Protetyka Stomatologiczna',
+    color: 'bg-indigo-50 border-indigo-100',
+    headerColor: 'bg-indigo-100',
+    href: '/uslugi/protetyka',
+    items: [
+      { label: 'Protetyka stomatologiczna', price: 'od 750 zł' },
+      { label: 'Korona metalowo-ceramiczna', price: 'od 750 zł' },
+      { label: 'Korona porcelanowa', price: 'od 1 400 zł' },
+      { label: 'Proteza akrylowa', price: 'od 1 200 zł' },
+      { label: 'Ekspresowa naprawa protezy', price: 'od 120 zł' },
     ],
   },
   {
@@ -101,21 +90,17 @@ const categories = [
     headerColor: 'bg-slate-100',
     href: '/uslugi/chirurgia',
     items: [
-      { label: 'Ekstrakcja prosta', price: 'od 200 zł' },
-      { label: 'Usunięcie ósemki', price: 'od 400 zł' },
-      { label: 'Resekcja wierzchołka korzenia', price: 'od 600 zł' },
-      { label: 'Podcinanie wędzidełka', price: 'od 350 zł' },
+      { label: 'Chirurgia stomatologiczna', price: 'od 200 zł' },
+      { label: 'Usunięcie ósemek', price: 'od 400 zł' },
     ],
   },
   {
-    title: 'Stomatologia Dziecięca',
+    title: 'Stomatologia Dziecięca – Pedodoncja',
     color: 'bg-pink-50 border-pink-100',
     headerColor: 'bg-pink-100',
     href: '/uslugi/stomatologia-dziecieca',
     items: [
-      { label: 'Wizyta kontrolna dziecka', price: 'od 50 zł' },
-      { label: 'Leczenie zachowawcze dziecka', price: 'od 120 zł' },
-      { label: 'Lakowanie zębów', price: 'od 100 zł' },
+      { label: 'Stomatologia dziecięca', price: 'od 120 zł' },
     ],
   },
 ]
