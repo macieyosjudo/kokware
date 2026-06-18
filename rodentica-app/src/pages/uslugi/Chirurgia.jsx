@@ -31,13 +31,6 @@ export default function Chirurgia() {
         { title: 'Augmentacja kości (przed implantami)', desc: 'Uzupełnienie niedoborów kości za pomocą biomateriałów kościozastępczych w celu przygotowania miejsca pod implant.' },
         { title: 'Sterowana regeneracja kości (GTR)', desc: 'Zaawansowana technika odbudowy kości z użyciem membran prowadzących regenerację – stosowana w implantologii i periodontologii.' },
       ]}
-      price="od 200 zł"
-      priceDetails={[
-        { label: 'Ekstrakcja prosta', value: 'od 200 zł' },
-        { label: 'Usunięcie ósemki', value: 'od 400 zł' },
-        { label: 'Resekcja wierzchołka', value: 'od 600 zł' },
-        { label: 'Podcinanie wędzidełka', value: 'od 350 zł' },
-      ]}
       note="Wszystkie zabiegi chirurgiczne wykonywane są w znieczuleniu miejscowym z użyciem The WAND. Po zabiegu otrzymasz szczegółowe instrukcje pielęgnacji rany."
       relatedServices={[
         { label: 'Implantologia', href: '/uslugi/implantologia' },

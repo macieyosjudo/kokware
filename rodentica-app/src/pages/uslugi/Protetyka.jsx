@@ -33,14 +33,6 @@ export default function Protetyka() {
         { title: 'Wkłady koronowe Inlay/Onlay/Overlay', desc: 'Laboratoryjne uzupełnienia ubytków zębów wykonane z ceramiki lub kompozytu – trwalsze od wypełnień bezpośrednich.' },
         { title: 'Ekspresowa naprawa protezy', desc: 'Szybka naprawa uszkodzonej protezy – często możliwa jeszcze tego samego dnia.' },
       ]}
-      price="od 750 zł"
-      priceDetails={[
-        { label: 'Korona metaloceramiczna', value: 'od 750 zł' },
-        { label: 'Korona porcelanowa (cyrkon)', value: 'od 1400 zł' },
-        { label: 'Proteza akrylowa', value: 'od 1200 zł' },
-        { label: 'Naprawa protezy', value: 'od 120 zł' },
-        { label: 'Licówka porcelanowa', value: 'od 1400 zł' },
-      ]}
       relatedServices={[
         { label: 'Implantologia', href: '/uslugi/implantologia' },
         { label: 'Stomatologia Estetyczna', href: '/uslugi/stomatologia-estetyczna' },

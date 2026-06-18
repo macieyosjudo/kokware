@@ -29,12 +29,6 @@ export default function StomatologiaZachowawcza() {
         { title: 'Rekonstrukcja zniszczonych zębów', desc: 'Odbudowa zębów z rozległymi ubytkami przy użyciu materiałów kompozytowych lub wkładów koronowych.' },
         { title: 'Porady higieniczne – prawidłowe mycie zębów', desc: 'Instruktaż prawidłowej techniki szczotkowania, nitkowania i użycia płynów do płukania ust.' },
       ]}
-      price="od 180 zł"
-      priceDetails={[
-        { label: 'Leczenie zachowawcze', value: 'od 180 zł' },
-        { label: 'Profilaktyka (lakowanie)', value: 'od 100 zł' },
-        { label: 'Konsultacja', value: 'od 50 zł' },
-      ]}
       relatedServices={[
         { label: 'Profilaktyka', href: '/uslugi/profilaktyka' },
         { label: 'Leczenie Kanałowe', href: '/uslugi/leczenie-kanalowe' },

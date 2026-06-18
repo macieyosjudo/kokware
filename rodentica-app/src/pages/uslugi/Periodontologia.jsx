@@ -29,12 +29,6 @@ export default function Periodontologia() {
         { title: 'Chirurgia płatowa (zaawansowane przypadki)', desc: 'Chirurgiczne odsłonięcie kości i powierzchni korzeni w zaawansowanej chorobie przyzębia umożliwiające dokładne oczyszczenie.' },
         { title: 'Kontrole i utrzymanie higieny', desc: 'Regularne wizyty podtrzymujące efekty leczenia periodontologicznego co 3–4 miesiące.' },
       ]}
-      price="od 100 zł"
-      priceDetails={[
-        { label: 'Badanie periodontologiczne', value: 'od 50 zł' },
-        { label: 'Scaling', value: 'od 200 zł' },
-        { label: 'Kiretaż (1 ząb)', value: 'od 100 zł' },
-      ]}
       note="Zapobieganie jest lepsze niż leczenie – nie zwlekaj z wizytą kontrolną, bo czas odgrywa decydującą rolę w przebiegu chorób przyzębia. Pierwsze objawy to krwawienie podczas mycia zębów."
       relatedServices={[
         { label: 'Profilaktyka', href: '/uslugi/profilaktyka' },

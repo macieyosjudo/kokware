@@ -30,14 +30,6 @@ export default function Profilaktyka() {
         { title: 'Dobór szczoteczki i pasty', desc: 'Rekomendacja odpowiedniej szczoteczki (elektrycznej lub manualnej) i pasty do zębów w zależności od stanu jamy ustnej.' },
         { title: 'Porady dotyczące irigatora', desc: 'Instruktaż użycia irigatora – urządzenia do płukania przestrzeni międzyzębowych strumieniem wody.' },
       ]}
-      price="od 100 zł"
-      priceDetails={[
-        { label: 'Skaling', value: 'od 150 zł' },
-        { label: 'Piaskowanie', value: 'od 150 zł' },
-        { label: 'Fluoryzacja', value: 'od 80 zł' },
-        { label: 'Higienizacja kompletna', value: 'od 300 zł' },
-        { label: 'Znieczulenie The WAND', value: '35 zł' },
-      ]}
       note="Zabiegi higienizacyjne powinny być wykonywane regularnie – zalecamy wizytę co 6 miesięcy. Regularne czyszczenie zapobiega próchnicy, chorobom dziąseł i nieprzyjemnemu oddechowi."
       relatedServices={[
         { label: 'Stomatologia Zachowawcza', href: '/uslugi/stomatologia-zachowawcza' },

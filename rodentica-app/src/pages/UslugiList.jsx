@@ -91,19 +91,18 @@ export default function UslugiList() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white" aria-label="Lista usług">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({ Icon, title, href, color, price, desc }, i) => (
+            {services.map(({ Icon, title, href, color, desc }, i) => (
               <SectionReveal key={title} delay={(i % 3) * 0.08}>
                 <Link
                   to={href}
                   className="group block bg-white border border-gray-100 rounded-2xl p-7 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-500/10 hover:border-brand-200 transition-all duration-300 cursor-pointer h-full"
-                  aria-label={`${title} – ${price}`}
+                  aria-label={title}
                 >
                   <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-300`}>
                     <Icon size={26} color="white" strokeWidth={1.8} aria-hidden="true" />
                   </div>
                   <div className="flex items-start justify-between mb-3">
                     <h2 className="text-lg font-semibold text-gray-900 leading-tight">{title}</h2>
-                    <span className="text-xs font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full ml-2 flex-shrink-0">{price}</span>
                   </div>
                   <p className="text-gray-500 text-sm leading-relaxed mb-5">{desc}</p>
                   <span className="text-brand-500 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">

@@ -30,13 +30,6 @@ export default function Ortodoncja() {
         { title: 'Comiesięczne wizyty kontrolne', desc: 'Regularne wizyty kontrolne umożliwiają monitorowanie postępu leczenia i korektę aparatu.' },
         { title: 'Zdjęcie aparatu i retencja', desc: 'Po zakończeniu aktywnego leczenia zakładamy retainer utrwalający efekty – stały lub zdejmowany.' },
       ]}
-      price="od 900 zł"
-      priceDetails={[
-        { label: 'Clear Liner (niewidoczny aligner)', value: 'od 900 zł' },
-        { label: 'Aparat stały standardowy', value: 'od 2500 zł' },
-        { label: 'Aparat stały estetyczny', value: 'od 3500 zł' },
-        { label: 'Konsultacja ortodontyczna', value: 'od 50 zł' },
-      ]}
       note="Leczenie ortodontyczne trwa przeważnie 1,5–2,5 roku. Podczas leczenia bardzo ważna jest higiena jamy ustnej – myj zęby po każdym posiłku i używaj nici dentystycznej."
       relatedServices={[
         { label: 'Stomatologia Dziecięca', href: '/uslugi/stomatologia-dziecieca' },

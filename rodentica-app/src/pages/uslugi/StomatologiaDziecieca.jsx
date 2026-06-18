@@ -30,13 +30,6 @@ export default function StomatologiaDziecieca() {
         { title: 'Wczesna diagnostyka ortodontyczna', desc: 'Ocena rozwoju zgryzu i wykrycie ewentualnych nieprawidłowości wymagających wczesnej interwencji ortodontycznej.' },
         { title: 'Porady dla rodziców o higienie dziecka', desc: 'Instruktaż dotyczący mycia zębów u niemowląt, dzieci i nastolatków oraz doboru odpowiedniej szczoteczki i pasty.' },
       ]}
-      price="od 120 zł"
-      priceDetails={[
-        { label: 'Wizyta kontrolna dziecka', value: 'od 50 zł' },
-        { label: 'Leczenie zachowawcze dziecka', value: 'od 120 zł' },
-        { label: 'Lakowanie zębów', value: 'od 100 zł' },
-        { label: 'Fluoryzacja', value: 'od 80 zł' },
-      ]}
       note="Pierwsze wizyty powinny mieć miejsce już po wyrżnięciu się pierwszych zębów mlecznych. Przedwczesna utrata mleczaków może zaburzyć wzrost szczęki i spowodować brak miejsca dla zębów stałych."
       relatedServices={[
         { label: 'Ortodoncja', href: '/uslugi/ortodoncja' },

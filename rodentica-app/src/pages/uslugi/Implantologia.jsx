@@ -27,12 +27,6 @@ export default function Implantologia() {
         { title: 'Osadzenie korony ceramicznej', desc: 'Po integracji na implancie mocowana jest estetyczna korona ceramiczna, nieodróżnialna od naturalnego zęba.' },
         { title: 'Kontrole i opieka pozabiegowa', desc: 'Regularne wizyty kontrolne zapewniają długotrwałą funkcję implantu i zdrowie otaczających tkanek.' },
       ]}
-      price="od 5 000 zł"
-      priceDetails={[
-        { label: 'Implant Biomet 3i', value: 'od 5000 zł' },
-        { label: 'Korona na implancie', value: 'od 1400 zł' },
-        { label: 'Konsultacja', value: 'od 50 zł' },
-      ]}
       note="Utrata nawet jednego zęba wpływa na cały zgryz. Nie czekaj zbyt długo z uzupełnieniem braku – zęby sąsiednie mogą się przemieszczać."
       relatedServices={[
         { label: 'Protetyka', href: '/uslugi/protetyka' },

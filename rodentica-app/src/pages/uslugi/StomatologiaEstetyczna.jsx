@@ -30,13 +30,6 @@ export default function StomatologiaEstetyczna() {
         { title: 'Licówki porcelanowe', desc: 'Cienkie naklejki ceramiczne naklejane na powierzchnię zębów – zmieniają kształt, kolor i proporcje uśmiechu.' },
         { title: 'Estetyczna odbudowa zębów kompozytem', desc: 'Bezpośrednia odbudowa zniszczonych lub przebarwionych zębów za pomocą materiału kompozytowego dopasowanego kolorystycznie.' },
       ]}
-      price="od 700 zł"
-      priceDetails={[
-        { label: 'Wybielanie nakładkowe', value: 'od 700 zł' },
-        { label: 'Wybielanie ZOOM', value: 'od 1300 zł' },
-        { label: 'Licówka porcelanowa', value: 'od 1400 zł' },
-        { label: 'Estetyka ogólna', value: 'od 700 zł' },
-      ]}
       relatedServices={[
         { label: 'Protetyka', href: '/uslugi/protetyka' },
         { label: 'Profilaktyka', href: '/uslugi/profilaktyka' },

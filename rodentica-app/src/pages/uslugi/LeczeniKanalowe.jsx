@@ -30,13 +30,6 @@ export default function LeczeniKanalowe() {
         { title: 'Usuwanie złamanych narzędzi', desc: 'Specjalistyczne zabiegi usuwania fragmentów narzędzi endodontycznych pozostałych w kanałach po wcześniejszym leczeniu.' },
         { title: 'Ponowne leczenie kanałowe', desc: 'Rewizja kanałów po nieskutecznym wcześniejszym leczeniu – dokładna reinstrumentacja i ponowne wypełnienie.' },
       ]}
-      price="od 400 zł"
-      priceDetails={[
-        { label: 'Leczenie kanałowe 1-kanałowe', value: 'od 400 zł' },
-        { label: 'Leczenie kanałowe 2-kanałowe', value: 'od 550 zł' },
-        { label: 'Leczenie kanałowe 3-kanałowe', value: 'od 700 zł' },
-        { label: 'Ponowne leczenie', value: 'od 600 zł' },
-      ]}
       note="Nieleczona próchnica prowadzi do stanów zapalnych miazgi i konieczności leczenia kanałowego. Im wcześniej zgłosisz się do nas, tym łatwiejsze i tańsze będzie leczenie."
       relatedServices={[
         { label: 'Stomatologia Zachowawcza', href: '/uslugi/stomatologia-zachowawcza' },
