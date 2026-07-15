@@ -5,7 +5,7 @@ import SectionReveal from '../components/SectionReveal'
 const sections = [
   {
     title: '1. Postanowienia ogólne',
-    body: 'Niniejszy Regulamin określa zasady korzystania z serwisu internetowego rodentica.pl ("Serwis"), prowadzonego przez Rodentica Stomatologia Estetyczna, ul. Cieszyńska 179, 43-300 Bielsko-Biała.',
+    body: 'Niniejszy Regulamin określa zasady korzystania z serwisu internetowego rodentica.pl ("Serwis"), prowadzonego przez Rodentica Stomatologia Estetyczna, ul. Cieszyńska 179, 43-300 Bielsko-Biała, NIP: [uzupełnić], REGON: [uzupełnić].',
   },
   {
     title: '2. Zakres usług Serwisu',
@@ -25,7 +25,7 @@ const sections = [
   },
   {
     title: '6. Reklamacje',
-    body: 'Uwagi dotyczące funkcjonowania Serwisu można zgłaszać na adres e-mail biuro@rodentica.pl lub telefonicznie pod numerem 33 8 123 123.',
+    body: 'Uwagi dotyczące funkcjonowania Serwisu można zgłaszać na adres e-mail biuro@rodentica.pl lub telefonicznie pod numerem 33 8 123 123. Reklamacje dotyczące działania Serwisu rozpatrywane są w terminie do 14 dni od dnia ich zgłoszenia.',
   },
   {
     title: '7. Postanowienia końcowe',

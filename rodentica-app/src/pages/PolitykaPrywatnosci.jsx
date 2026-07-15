@@ -5,7 +5,7 @@ import SectionReveal from '../components/SectionReveal'
 const sections = [
   {
     title: '1. Administrator danych',
-    body: 'Administratorem danych osobowych zbieranych za pośrednictwem serwisu rodentica.pl jest Rodentica Stomatologia Estetyczna, ul. Cieszyńska 179, 43-300 Bielsko-Biała ("Administrator"). Kontakt w sprawach dotyczących przetwarzania danych osobowych: e-mail biuro@rodentica.pl, telefon 33 8 123 123.',
+    body: 'Administratorem danych osobowych zbieranych za pośrednictwem serwisu rodentica.pl jest Rodentica Stomatologia Estetyczna, ul. Cieszyńska 179, 43-300 Bielsko-Biała, NIP: [uzupełnić], REGON: [uzupełnić] ("Administrator"). Kontakt w sprawach dotyczących przetwarzania danych osobowych: e-mail biuro@rodentica.pl, telefon 33 8 123 123.',
   },
   {
     title: '2. Jakie dane zbieramy',
@@ -13,7 +13,7 @@ const sections = [
   },
   {
     title: '3. Cel i podstawa prawna przetwarzania',
-    body: 'Dane osobowe przetwarzane są w celu odpowiedzi na przesłane zapytanie oraz kontaktu w sprawie umówienia wizyty, na podstawie zgody użytkownika wyrażonej przy wysyłce formularza (art. 6 ust. 1 lit. a RODO).',
+    body: 'Dane osobowe przetwarzane są w celu odpowiedzi na przesłane zapytanie oraz kontaktu w sprawie umówienia wizyty, na podstawie zgody użytkownika wyrażonej przy wysyłce formularza (art. 6 ust. 1 lit. a RODO). W przypadku przesłania w formularzu zdjęcia lub opisu dolegliwości zdrowotnych, podstawą przetwarzania tych szczególnych kategorii danych osobowych jest wyraźna zgoda użytkownika (art. 9 ust. 2 lit. a RODO).',
   },
   {
     title: '4. Odbiorcy danych',
@@ -33,7 +33,7 @@ const sections = [
   },
   {
     title: '8. Pliki cookies',
-    body: 'Serwis rodentica.pl obecnie nie wykorzystuje plików cookies do celów analitycznych ani marketingowych. W przypadku wprowadzenia takich narzędzi w przyszłości, użytkownicy zostaną o tym poinformowani, a niniejsza polityka zostanie odpowiednio zaktualizowana.',
+    body: 'Serwis rodentica.pl wykorzystuje wyłącznie niezbędne, techniczne pliki cookies, konieczne do prawidłowego działania strony. Serwis nie wykorzystuje plików cookies do celów analitycznych ani marketingowych. W przypadku wprowadzenia takich narzędzi w przyszłości, użytkownicy zostaną o tym poinformowani, a niniejsza polityka zostanie odpowiednio zaktualizowana.',
   },
   {
     title: '9. Zmiany polityki prywatności',

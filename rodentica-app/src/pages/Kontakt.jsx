@@ -55,6 +55,8 @@ export default function Kontakt() {
   const [loading, setLoading] = useState(false)
   const [consent, setConsent] = useState(false)
   const [consentError, setConsentError] = useState(false)
+  const [healthConsent, setHealthConsent] = useState(false)
+  const [healthConsentError, setHealthConsentError] = useState(false)
   const [photo, setPhoto] = useState(null)
   const [photoPreview, setPhotoPreview] = useState(null)
   const fileInputRef = useRef(null)
@@ -83,7 +85,8 @@ export default function Kontakt() {
     e.preventDefault()
     const errs = validate(form)
     if (!consent) setConsentError(true)
-    if (Object.keys(errs).length || !consent) { setErrors(errs); return }
+    if (!healthConsent) setHealthConsentError(true)
+    if (Object.keys(errs).length || !consent || !healthConsent) { setErrors(errs); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 1200))
     setLoading(false)
@@ -191,7 +194,7 @@ export default function Kontakt() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Wiadomość wysłana!</h3>
                     <p className="text-gray-500 max-w-xs">Odezwiemy się w ciągu 24 godzin. Możesz też zadzwonić: <strong>33 8 123 123</strong></p>
-                    <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }); removePhoto() }} className="mt-2 text-brand-500 font-semibold hover:underline cursor-pointer text-sm">
+                    <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }); removePhoto(); setConsent(false); setHealthConsent(false) }} className="mt-2 text-brand-500 font-semibold hover:underline cursor-pointer text-sm">
                       Wyślij kolejną wiadomość
                     </button>
                   </motion.div>
@@ -289,6 +292,28 @@ export default function Kontakt() {
                           </button>
                         )}
                         <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={handlePhoto} className="hidden" aria-label="Wybierz zdjęcie" />
+                      </div>
+
+                      {/* Health data consent */}
+                      <div>
+                        <label className={`flex gap-3 cursor-pointer group ${healthConsentError ? 'text-red-500' : 'text-gray-600'}`}>
+                          <input
+                            type="checkbox"
+                            checked={healthConsent}
+                            onChange={(e) => { setHealthConsent(e.target.checked); if (e.target.checked) setHealthConsentError(false) }}
+                            className="mt-0.5 w-4 h-4 flex-shrink-0 accent-brand-500 cursor-pointer"
+                            aria-required="true"
+                            aria-invalid={healthConsentError}
+                          />
+                          <span className="text-xs leading-relaxed">
+                            Wyrażam zgodę na przetwarzanie moich danych osobowych (w tym danych dotyczących zdrowia, o ile zostaną podane w wiadomości lub załącznikach) w celu obsługi zapytania i kontaktu. Szczegóły znajdziesz w <Link to="/polityka-prywatnosci" target="_blank" className="text-brand-600 hover:underline cursor-pointer" onClick={(e) => e.stopPropagation()}>Polityce Prywatności</Link> oraz <Link to="/regulamin" target="_blank" className="text-brand-600 hover:underline cursor-pointer" onClick={(e) => e.stopPropagation()}>Regulaminie</Link>. <span className="text-red-400" aria-hidden="true">*</span>
+                          </span>
+                        </label>
+                        {healthConsentError && (
+                          <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle size={11} aria-hidden="true" /> Wyrażenie zgody jest wymagane do wysłania formularza.
+                          </p>
+                        )}
                       </div>
 
                       <button type="submit" disabled={loading}
