@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, MessageSquare, ImagePlus, X } from 'lucide-react'
 import PageHero from '../components/PageHero'
@@ -256,7 +257,7 @@ export default function Kontakt() {
                             aria-invalid={consentError}
                           />
                           <span className="text-xs leading-relaxed">
-                            Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, adres e-mail, numer telefonu) przez Rodentica Stomatologia Estetyczna z siedzibą w Bielsku-Białej, ul. Cieszyńska 179, w celu obsługi przesłanego zapytania oraz kontaktu w sprawie umówienia wizyty. Administratorem danych jest Rodentica Stomatologia Estetyczna. <span className="text-red-400" aria-hidden="true">*</span>
+                            Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, adres e-mail, numer telefonu) przez Rodentica Stomatologia Estetyczna z siedzibą w Bielsku-Białej, ul. Cieszyńska 179, w celu obsługi przesłanego zapytania oraz kontaktu w sprawie umówienia wizyty. Administratorem danych jest Rodentica Stomatologia Estetyczna. Szczegóły w <Link to="/polityka-prywatnosci" target="_blank" className="text-brand-600 hover:underline cursor-pointer" onClick={(e) => e.stopPropagation()}>Polityce Prywatności</Link>. <span className="text-red-400" aria-hidden="true">*</span>
                           </span>
                         </label>
                         {consentError && (

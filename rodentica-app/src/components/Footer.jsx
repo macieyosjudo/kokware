@@ -106,8 +106,8 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <p>© {new Date().getFullYear()} Rodentica – Stomatologia Estetyczna. Wszelkie prawa zastrzeżone.</p>
           <div className="flex gap-4">
-            <Link to="/kontakt" className="hover:text-brand-400 transition-colors cursor-pointer">Polityka prywatności</Link>
-            <Link to="/kontakt" className="hover:text-brand-400 transition-colors cursor-pointer">RODO</Link>
+            <Link to="/polityka-prywatnosci" className="hover:text-brand-400 transition-colors cursor-pointer">Polityka prywatności</Link>
+            <Link to="/regulamin" className="hover:text-brand-400 transition-colors cursor-pointer">Regulamin</Link>
           </div>
         </div>
       </div>

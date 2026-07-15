@@ -11,6 +11,8 @@ import Zespol from './pages/Zespol'
 import Kontakt from './pages/Kontakt'
 import Certyfikaty from './pages/Certyfikaty'
 import Galeria from './pages/Galeria'
+import PolitykaPrywatnosci from './pages/PolitykaPrywatnosci'
+import Regulamin from './pages/Regulamin'
 
 // Service pages
 import StomatologiaEstetyczna from './pages/uslugi/StomatologiaEstetyczna'
@@ -58,6 +60,8 @@ function Layout() {
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/certyfikaty" element={<Certyfikaty />} />
           <Route path="/galeria" element={<Galeria />} />
+          <Route path="/polityka-prywatnosci" element={<PolitykaPrywatnosci />} />
+          <Route path="/regulamin" element={<Regulamin />} />
           {/* 404 */}
           <Route path="*" element={
             <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 pt-24">
