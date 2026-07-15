@@ -25,7 +25,7 @@ const sections = [
   },
   {
     title: '6. Reklamacje',
-    body: 'Uwagi dotyczące funkcjonowania Serwisu można zgłaszać na adres e-mail biuro@rodentica.pl lub telefonicznie pod numerem 33 8 123 123. Reklamacje dotyczące działania Serwisu rozpatrywane są w terminie do 14 dni od dnia ich zgłoszenia.',
+    body: 'Uwagi dotyczące funkcjonowania Serwisu można zgłaszać na adres e-mail biuro@rodentica.pl lub telefonicznie pod numerem 33 8 123 123.',
   },
   {
     title: '7. Postanowienia końcowe',
